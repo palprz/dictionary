@@ -18,14 +18,17 @@ This application isn't a big one and the main goal isn't containing unique/revea
 	- report bugs with using issues GitHub feature
 	- monitor progress of my work in different ways
 
+## Codacy (quality code tool):
+https://www.codacy.com/app/palprz/dictionary/dashboard
 
-### Technologies and tools:
+## Technologies and tools:
 - Java 8
 - Eclipse
 - Maven
 - JUnit 
 - MongoDB
 - JavaFX (with plugin e(fx)clipse and Scene Builder 8.0)
+- Codacy
 
 
 ## Features
