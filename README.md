@@ -2,6 +2,23 @@
 
 Desktop application for read, write, edit and remove translations.
 
+This application isn't a big one and the main goal isn't containing unique/revealing solutions. The goals for this project are:
+
+1. Gather new skills with using new technologies:
+	- JavaFX (create modern view instead of ugly solution which I could get by using Swing)
+	- NoSQL database (MongoDB) for Java
+  
+2. Get bigger experience with using GitHub/tools dedicated for it:
+	- Codacy to monitoring code quality (alternative for SonarQube)
+	- creating isssues on GitHub (alternative for creating issues with using JIRA)
+  
+3. Working with typical company workflow:
+	- using feature branches to separate specific code and to be easier reference them
+	- creating issues and reference pull requests to them
+	- report bugs with using issues GitHub feature
+	- monitor progress of my work in different ways
+
+
 ### Technologies and tools:
 - Java 8
 - Eclipse
@@ -13,28 +30,19 @@ Desktop application for read, write, edit and remove translations.
 
 ## Features
 
-Features: **must have**
-| Feature| Description | Is it done? |
-|:--:|:-----------|:-----------:|
-|Translation CRUD|Add/edit/remove/display translations|:x:|
-|Search by word|Find translation for specific words|:x:|
-|Language CRUD|Add/edit/remove/display languages|:x:|
-|Search by language|Find translation for specific language|:x:|
-|Many translations|Many translations for specific word and language|:x:|
-|Remember last languages|Use last searched configuration for languages|:x:|
+To find more details about it, please see 'Issues' tab and look for the name of feature from below table:
 
-Features: **should be**
-|Feature| Description | Is it done? |
-|:--:|:-----------|:-----------:|
-|Last languages|Show option to find in last 3(?) searched languages|:x:|
-|Swap words|Swap searched word and found word|:x:|
-|Reset database|Database can be hard reset (maybe delete new translations from last hour?)|:x:|
-|Export XML|Export all details from the database into XML file|:x:|
-|Import XML|Import all details from XML file into database|:x:|
-|...|...|...|
-
-
-Features: **good to have**
-|Feature| Description | Is it done? |
-|:--:|:-----------|:-----------:|
-|Better UI (feature?)|Application looks nice and smooth|:x:|
+|Feature name|Priority| Is it done? |
+|:--:|:--:|:-----------:|
+|Translation CRUD|High|:x:|
+|Search by word|High|:x:|
+|Language CRUD|High|:x:|
+|Search by language|High|:x:|
+|Many translations|High|:x:|
+|Remember last languages|High|:x:|
+|Last languages|Medium|:x:|
+|Swap words|Medium|:x:|
+|Reset database|Medium|:x:|
+|Better UI (feature?)|Low|:x:|
+|Export XML|Low|:x:|
+|Import XML|Low|:x:|
