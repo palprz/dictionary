@@ -30,5 +30,4 @@ public class WordMap {
 	public void setTranslation( String translation ) {
 		this.translation = translation;
 	}
-
 }

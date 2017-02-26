@@ -1,6 +1,5 @@
 package io.github.palprz.entity;
 
-//TODO javadoc for class
 public class Word {
 
 	private Integer id;
@@ -21,5 +20,4 @@ public class Word {
 	public void setName( String name ) {
 		this.name = name;
 	}
-
 }

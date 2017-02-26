@@ -2,27 +2,26 @@ package io.github.palprz;
 
 import java.io.IOException;
 
-import io.github.palprz.view.TranslationController;
-import io.github.palprz.view.model.Translation;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Launch class to start 'Dictionary' application.
+ * @author Przemyslaw Paluch
+ */
 public class Dictionary extends Application {
 
 	private static final String CSS_URL = "/io/github/palprz/resource/dictionary.css";
 	private static final String MAIN_FXML_NAME = "Dictionary.fxml";
 
-	private static ObservableList< Translation > translations = FXCollections.observableArrayList();
-
+	/**
+	 * Main method.
+	 * @param args Provided arguments.
+	 */
 	public static void main( String[] args ) {
-		translations.add( new Translation( "hello", "czesc" ) );
-		translations.add( new Translation( "good morning", "dzien dobry" ) );
-
 		launch( args );
 	}
 
@@ -35,13 +34,5 @@ public class Dictionary extends Application {
 		scene.getStylesheets().add( getClass().getResource( CSS_URL ).toExternalForm() );
 		primaryStage.setScene( scene );
 		primaryStage.show();
-
-		TranslationController ctrl = loader.getController();
-		ctrl.setApp( this );
 	}
-
-	public ObservableList< Translation > getTranslations() {
-		return translations;
-	}
-
 }

@@ -3,7 +3,9 @@ package io.github.palprz.view.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-//TODO javadoc for class
+/**
+ * DTO to handle necessary data for displaying in application.
+ */
 public class Translation {
 
 	private StringProperty searchedWord;
