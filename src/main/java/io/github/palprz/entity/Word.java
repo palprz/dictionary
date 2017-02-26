@@ -1,5 +1,6 @@
 package io.github.palprz.entity;
 
+//TODO javadoc for class
 public class Word {
 
 	private Integer id;

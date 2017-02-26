@@ -4,14 +4,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.TranslationController">
    <children>
-      <TableView prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="translationTable" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn minWidth="200.0" prefWidth="200.0" text="Search word" />
-          <TableColumn minWidth="200.0" prefWidth="200.0" text="Found word" />
-            <TableColumn minWidth="200.0" prefWidth="200.0" text="Language" />
+          <TableColumn fx:id="searchedWordColumn" minWidth="200.0" prefWidth="200.0" text="Search word" />
+          <TableColumn fx:id="foundWordColumn" minWidth="200.0" prefWidth="200.0" text="Found word" />
         </columns>
       </TableView>
    </children>
