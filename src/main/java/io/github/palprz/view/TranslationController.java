@@ -1,6 +1,6 @@
 package io.github.palprz.view;
 
-import io.github.palprz.App;
+import io.github.palprz.Dictionary;
 import io.github.palprz.view.model.Translation;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -18,7 +18,7 @@ public class TranslationController {
 	@FXML
 	private TableColumn<Translation, String> foundWordColumn;
 	
-	private App app;
+	private Dictionary app;
 	
 	@FXML
 	private void initialize() {
@@ -26,7 +26,7 @@ public class TranslationController {
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getFoundWord() );
 	}
 	
-	public void setApp( App app ) {
+	public void setApp( Dictionary app ) {
 		this.app = app;
 		translationTable.setItems( app.getTranslations() );
 	}
