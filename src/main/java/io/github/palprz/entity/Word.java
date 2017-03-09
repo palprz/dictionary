@@ -5,6 +5,13 @@ public class Word {
 	private Integer id;
 	private String name;
 
+	public Word() {
+	}
+	
+	public Word( final String nameVal ) {
+		this.name = nameVal;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

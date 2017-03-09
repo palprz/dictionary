@@ -1,5 +1,9 @@
 package io.github.palprz.view;
 
+import io.github.palprz.entity.Word;
+import io.github.palprz.entity.WordMap;
+import io.github.palprz.facade.WordMapFacade;
+import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import io.github.palprz.view.model.Translation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,8 +37,19 @@ public class TranslationController {
 
 	// TODO for now it's just a dummy method
 	public void initTransactions() {
+		createTestWordMap();
+		
 		translations.add( new Translation( "hello", "czesc" ) );
 		translations.add( new Translation( "good morning", "dzien dobry" ) );
 		translationTable.setItems( translations );
+	}
+
+	private void createTestWordMap() {
+		WordMap wordMap = new WordMap();
+		wordMap.setSearchWord( new Word( "hello" ) );
+		wordMap.setTranslation( new Word( "czesc" ) );
+		
+		WordMapFacade wordMapFacade = new WordMapFacadeImpl();
+		wordMapFacade.add( wordMap );
 	}
 }

@@ -1,11 +1,10 @@
 package io.github.palprz.entity;
 
-//TODO javadoc for class
 public class WordMap {
 
 	private Integer id;
-	private String searchWord;
-	private String translation;
+	private Word searchWord;
+	private Word translation;
 
 	public Integer getId() {
 		return id;
@@ -15,19 +14,19 @@ public class WordMap {
 		this.id = id;
 	}
 
-	public String getSearchWord() {
+	public Word getSearchWord() {
 		return searchWord;
 	}
 
-	public void setSearchWord( String searchWord ) {
+	public void setSearchWord( Word searchWord ) {
 		this.searchWord = searchWord;
 	}
 
-	public String getTranslation() {
+	public Word getTranslation() {
 		return translation;
 	}
 
-	public void setTranslation( String translation ) {
+	public void setTranslation( Word translation ) {
 		this.translation = translation;
 	}
 }
