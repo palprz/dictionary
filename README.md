@@ -1,5 +1,7 @@
 ## Dictionary [February 2017]
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4123887fcf24dffb4804662795003cf)](https://www.codacy.com/app/palprz/dictionary?utm_source=github.com&utm_medium=referral&utm_content=palprz/dictionary&utm_campaign=badger)
+
 Desktop application for read, write, edit and remove translations.
 
 This application isn't a big one and the main goal isn't containing unique/revealing solutions. The goals for this project are:
