@@ -24,7 +24,7 @@ This application isn't a big one and the main goal isn't containing unique/revea
 - MongoDB
 - JavaFX (with plugin e(fx)clipse and Scene Builder 8.0)
 - Codacy
-- Robomongo
+- mLab
 
 
 ## Features

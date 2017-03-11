@@ -1,6 +1,7 @@
 package io.github.palprz.view;
 
-import io.github.palprz.entity.Word;
+import java.util.List;
+
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
@@ -30,26 +31,27 @@ public class TranslationController {
 
 	@FXML
 	private void initialize() {
-		initTransactions();
+		loadTransactions();
+		
 		searchedWordColumn.setCellValueFactory( cellData -> cellData.getValue().getSearchedWord() );
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getFoundWord() );
 	}
 
-	// TODO for now it's just a dummy method
-	public void initTransactions() {
-		createTestWordMap();
-		
-		translations.add( new Translation( "hello", "czesc" ) );
-		translations.add( new Translation( "good morning", "dzien dobry" ) );
+	/**
+	 * Load all transactions to the application.
+	 */
+	public void loadTransactions() {
+		WordMapFacade wordMapFacade = new WordMapFacadeImpl();
+		List<WordMap> maps = wordMapFacade.getAll();
+		convertWordMapsToTranslations( maps );
 		translationTable.setItems( translations );
 	}
 
-	private void createTestWordMap() {
-		WordMap wordMap = new WordMap();
-		wordMap.setSearchWord( new Word( "hello" ) );
-		wordMap.setTranslation( new Word( "czesc" ) );
-		
-		WordMapFacade wordMapFacade = new WordMapFacadeImpl();
-		wordMapFacade.add( wordMap );
+	//TODO it isn't the best idea and solution - I should spend more time for design this part of application.
+	private void convertWordMapsToTranslations( List<WordMap> maps ) {
+		for( WordMap map : maps ) {
+			Translation translation = new Translation( map.getSearchWord().getName(), map.getTranslation().getName() );
+			translations.add( translation );
+		}
 	}
 }
