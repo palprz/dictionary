@@ -19,38 +19,51 @@ import javafx.scene.control.TableView;
 public class TranslationController {
 
 	@FXML
-	private TableView< Translation > translationTable;
+	private TableView<Translation> translationTable;
 
 	@FXML
-	private TableColumn< Translation, String > searchedWordColumn;
+	private TableColumn<Translation, String> searchedWordColumn;
 
 	@FXML
-	private TableColumn< Translation, String > foundWordColumn;
+	private TableColumn<Translation, String> foundWordColumn;
 
-	private static ObservableList< Translation > translations = FXCollections.observableArrayList();
+	private static ObservableList<Translation> translations = FXCollections.observableArrayList();
 
 	@FXML
 	private void initialize() {
-		loadTransactions();
+		loadTranslations();
 
 		searchedWordColumn.setCellValueFactory( cellData -> cellData.getValue().getSearchedWord() );
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getFoundWord() );
 	}
 
 	/**
-	 * Load all transactions to the application.
+	 * Load all translations from database into application.
 	 */
-	public void loadTransactions() {
+	public void loadTranslations() {
 		final WordMapFacade wordMapFacade = new WordMapFacadeImpl();
 		final List<WordMap> maps = wordMapFacade.getAll();
-		convertWordMapsToTranslations( maps );
+		populateTransactionsByWordMaps( maps );
 		translationTable.setItems( translations );
 	}
 
-	//TODO it isn't the best idea and solution - I should spend more time for design this part of application.
-	private void convertWordMapsToTranslations( final List<WordMap> maps ) {
-		for( final WordMap map : maps ) {
-			final Translation translation = new Translation( map.getSearchWord().getName(), map.getTranslation().getName() );
+	/**
+	 * Convert entities from database into object which application can display
+	 * on the screen.
+	 *
+	 * @param maps The collection with WordMap entities
+	 */
+	private void populateTransactionsByWordMaps( final List<WordMap> maps ) {
+		for ( final WordMap map : maps ) {
+			final Translation translation = new Translation();
+			if ( map.getSearchWord() != null ) {
+				translation.setSearchedWord( map.getSearchWord().getName() );
+			}
+
+			if ( map.getTranslation() != null ) {
+				translation.setFoundWord( map.getTranslation().getName() );
+			}
+
 			translations.add( translation );
 		}
 	}
