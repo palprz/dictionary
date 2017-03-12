@@ -32,7 +32,7 @@ public class TranslationController {
 	@FXML
 	private void initialize() {
 		loadTransactions();
-		
+
 		searchedWordColumn.setCellValueFactory( cellData -> cellData.getValue().getSearchedWord() );
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getFoundWord() );
 	}
@@ -41,16 +41,16 @@ public class TranslationController {
 	 * Load all transactions to the application.
 	 */
 	public void loadTransactions() {
-		WordMapFacade wordMapFacade = new WordMapFacadeImpl();
-		List<WordMap> maps = wordMapFacade.getAll();
+		final WordMapFacade wordMapFacade = new WordMapFacadeImpl();
+		final List<WordMap> maps = wordMapFacade.getAll();
 		convertWordMapsToTranslations( maps );
 		translationTable.setItems( translations );
 	}
 
 	//TODO it isn't the best idea and solution - I should spend more time for design this part of application.
-	private void convertWordMapsToTranslations( List<WordMap> maps ) {
-		for( WordMap map : maps ) {
-			Translation translation = new Translation( map.getSearchWord().getName(), map.getTranslation().getName() );
+	private void convertWordMapsToTranslations( final List<WordMap> maps ) {
+		for( final WordMap map : maps ) {
+			final Translation translation = new Translation( map.getSearchWord().getName(), map.getTranslation().getName() );
 			translations.add( translation );
 		}
 	}

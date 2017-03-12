@@ -1,22 +1,24 @@
 package io.github.palprz.entity;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+
+@Entity
 public class Word {
 
-	private Integer id;
+	@Id
+	private ObjectId id = new ObjectId();
+
+	@Property
 	private String name;
 
-	public Word() {
-	}
-	
-	public Word( final String nameVal ) {
-		this.name = nameVal;
-	}
-	
-	public Integer getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId( Integer id ) {
+	public void setId( final ObjectId id ) {
 		this.id = id;
 	}
 
@@ -24,7 +26,7 @@ public class Word {
 		return name;
 	}
 
-	public void setName( String name ) {
+	public void setName( final String name ) {
 		this.name = name;
 	}
 }
