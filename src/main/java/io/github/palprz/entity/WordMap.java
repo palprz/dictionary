@@ -1,33 +1,43 @@
 package io.github.palprz.entity;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
+
+@Entity
 public class WordMap {
 
-	private Integer id;
-	private String searchWord;
-	private String translation;
+	@Id
+	private ObjectId id = new ObjectId();
 
-	public Integer getId() {
+	@Reference
+	private Word searchWord;
+
+	@Reference
+	private Word translation;
+
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId( Integer id ) {
+	public void setId( final ObjectId id ) {
 		this.id = id;
 	}
 
-	public String getSearchWord() {
+	public Word getSearchWord() {
 		return searchWord;
 	}
 
-	public void setSearchWord( String searchWord ) {
+	public void setSearchWord( final Word searchWord ) {
 		this.searchWord = searchWord;
 	}
 
-	public String getTranslation() {
+	public Word getTranslation() {
 		return translation;
 	}
 
-	public void setTranslation( String translation ) {
+	public void setTranslation( final Word translation ) {
 		this.translation = translation;
 	}
-
 }

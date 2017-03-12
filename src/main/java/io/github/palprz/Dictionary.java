@@ -8,10 +8,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
+/**
+ * Launch class to start 'Dictionary' application.
+ * @author Przemyslaw Paluch
+ */
+public class Dictionary extends Application {
 
-	private static final String CSS_URL = "/io/github/palprz/resource/application.css";
+	private static final String CSS_URL = "/io/github/palprz/resource/dictionary.css";
+	private static final String MAIN_FXML_NAME = "Dictionary.fxml";
 
+	/**
+	 * Main method.
+	 * @param args Provided arguments.
+	 */
 	public static void main( String[] args ) {
 		launch( args );
 	}
@@ -19,12 +28,11 @@ public class App extends Application {
 	@Override
 	public void start( Stage primaryStage ) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation( App.class.getResource( "App.fxml" ) );
+		loader.setLocation( Dictionary.class.getResource( MAIN_FXML_NAME ) );
 		AnchorPane root = ( AnchorPane ) loader.load();
 		Scene scene = new Scene( root );
 		scene.getStylesheets().add( getClass().getResource( CSS_URL ).toExternalForm() );
 		primaryStage.setScene( scene );
 		primaryStage.show();
 	}
-
 }
