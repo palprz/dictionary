@@ -2,16 +2,21 @@ package io.github.palprz.entity;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.utils.IndexType;
 
-@Entity
+@Entity( "word" )
+@Indexes(@Index(fields = @Field(value = "$**", type = IndexType.TEXT)))
 public class Word {
 
 	@Id
 	private ObjectId id = new ObjectId();
 
-	@Property
+	@Property( "name" )
 	private String name;
 
 	public ObjectId getId() {
