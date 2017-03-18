@@ -38,8 +38,8 @@ To find more details about it, please see 'Issues' tab and look for the name of 
 
 |Feature name|Priority| Is it done? |
 |:--:|:--:|:-----------:|
-|Translation CRUD|High|:heavy_check_mark:|
-|Search by word|High|:x:|
+|Translation |High|:x:|
+|Search by word|High|:heavy_check_mark:|
 |Language CRUD|High|:x:|
 |Search by language|High|:x:|
 |Many translations|High|:x:|
