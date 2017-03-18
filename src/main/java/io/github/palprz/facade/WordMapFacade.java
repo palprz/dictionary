@@ -11,12 +11,19 @@ public interface WordMapFacade {
 	 *
 	 * @param wordMap The WordMap entity to add
 	 */
-	public void add( final WordMap wordMap );
+	public void addWordMap( final WordMap wordMap );
 
 	/**
 	 * Get all WordMap entities from database.
 	 *
 	 * @return Collection with WordMap entities.
 	 */
-	public List<WordMap> getAll();
+	public List<WordMap> getWordMap();
+
+	/**
+	 * Get all WordMap entities from database related with searched word.
+	 *
+	 * @return Collection with WordMap entities.
+	 */
+	public List<WordMap> getWordMapBySearchWord( final String searchWord );
 }

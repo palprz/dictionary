@@ -5,16 +5,16 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
-@Entity
+@Entity( "word_map" )
 public class WordMap {
 
 	@Id
 	private ObjectId id = new ObjectId();
 
-	@Reference
+	@Reference( "search_word" )
 	private Word searchWord;
 
-	@Reference
+	@Reference( "translation" )
 	private Word translation;
 
 	public ObjectId getId() {

@@ -28,12 +28,22 @@ public class Database {
 	}
 
 	/**
+	 * Init all database objects to avoid problem with waiting for first search.
+	 */
+	public static void init() {
+		db = getDB();
+		client = getClient();
+		datastore = getDataStore();
+	}
+
+	/**
+	 * Return MongoClient object.
 	 * @return MongoClient
 	 */
 	public static MongoClient getClient() {
 		if ( client == null ) {
-			final MongoCredential credential = MongoCredential.createCredential( DB_USERNAME, DB_NAME, DB_PASSWORD.toCharArray() );
-			//FIXME add MongoClient.close() during closing application
+			final MongoCredential credential = 
+					MongoCredential.createCredential( DB_USERNAME, DB_NAME, DB_PASSWORD.toCharArray() );
 			client = new MongoClient( new ServerAddress( DB_HOSTAME, DB_POST ), Arrays.asList( credential ) );
 		}
 
@@ -42,7 +52,6 @@ public class Database {
 
 	/**
 	 * Return database from MongoClient.
-	 * Current local database is without password, so it doesn't check auth.
 	 * @return DB
 	 */
 	public static DB getDB() {
@@ -63,6 +72,7 @@ public class Database {
 	}
 
 	/**
+	 * Return Datastore object from Morphia.
 	 * @return Datastore
 	 */
 	public static Datastore getDataStore() {

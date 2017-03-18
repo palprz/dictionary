@@ -8,30 +8,17 @@ import javafx.beans.property.StringProperty;
  */
 public class Translation {
 
-	private StringProperty searchedWord;
-	private StringProperty foundWord;
+	private StringProperty name;
 
-	public Translation() {
+	public Translation( final String translationWord ) {
+		this.name = new SimpleStringProperty( translationWord );
 	}
 
-	public Translation( final String searchedWord, final String foundWord ) {
-		this.searchedWord = new SimpleStringProperty( searchedWord );
-		this.foundWord = new SimpleStringProperty( foundWord );
+	public StringProperty getName() {
+		return name;
 	}
 
-	public StringProperty getSearchedWord() {
-		return searchedWord;
-	}
-
-	public void setSearchedWord( final String searchedWord ) {
-		this.searchedWord = new SimpleStringProperty( searchedWord );
-	}
-
-	public StringProperty getFoundWord() {
-		return foundWord;
-	}
-
-	public void setFoundWord( final String foundWord ) {
-		this.foundWord = new SimpleStringProperty( foundWord );
+	public void setName( final String searchedWord ) {
+		this.name = new SimpleStringProperty( searchedWord );
 	}
 }

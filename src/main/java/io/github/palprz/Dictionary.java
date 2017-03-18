@@ -2,6 +2,7 @@ package io.github.palprz;
 
 import java.io.IOException;
 
+import io.github.palprz.db.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,16 +22,17 @@ public class Dictionary extends Application {
 	 * Main method.
 	 * @param args Provided arguments.
 	 */
-	public static void main( String[] args ) {
+	public static void main( final String[] args ) {
+		Database.init();
 		launch( args );
 	}
 
 	@Override
-	public void start( Stage primaryStage ) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
+	public void start( final Stage primaryStage ) throws IOException {
+		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation( Dictionary.class.getResource( MAIN_FXML_NAME ) );
-		AnchorPane root = ( AnchorPane ) loader.load();
-		Scene scene = new Scene( root );
+		final AnchorPane root = ( AnchorPane ) loader.load();
+		final Scene scene = new Scene( root );
 		scene.getStylesheets().add( getClass().getResource( CSS_URL ).toExternalForm() );
 		primaryStage.setScene( scene );
 		primaryStage.show();

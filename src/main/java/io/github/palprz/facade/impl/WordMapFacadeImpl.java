@@ -13,7 +13,7 @@ import io.github.palprz.facade.WordMapFacade;
 public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
-	public void add( final WordMap wordMap ) {
+	public void addWordMap( final WordMap wordMap ) {
 		final Word searchWord = wordMap.getSearchWord();
 		final Word translation = wordMap.getTranslation();
 
@@ -23,8 +23,16 @@ public class WordMapFacadeImpl implements WordMapFacade {
 	}
 
 	@Override
-	public List<WordMap> getAll() {
+	public List<WordMap> getWordMap() {
 		final Query< WordMap > query = Database.getDataStore().createQuery( WordMap.class );
 		return query.asList();
+	}
+
+	@Override
+	public List<WordMap> getWordMapBySearchWord( final String searchWord ) {
+		final Word word = Database.getDataStore().createQuery(
+				Word.class ).field( "name" ).equal( searchWord ).get();
+		return Database.getDataStore().createQuery(
+				WordMap.class ).field( "searchWord" ).equal( word ).asList();
 	}
 }
