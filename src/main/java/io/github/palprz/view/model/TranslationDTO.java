@@ -6,11 +6,11 @@ import javafx.beans.property.StringProperty;
 /**
  * DTO to handle necessary data for displaying in application.
  */
-public class Translation {
+public class TranslationDTO {
 
 	private StringProperty name;
 
-	public Translation( final String translationWord ) {
+	public TranslationDTO( final String translationWord ) {
 		this.name = new SimpleStringProperty( translationWord );
 	}
 

@@ -17,6 +17,14 @@ public class WordMap {
 	@Reference( "translation" )
 	private Word translation;
 
+	public WordMap() {
+	}
+
+	public WordMap( final Word searchWordVal, final Word translationVal ) {
+		searchWord = searchWordVal;
+		translation = translationVal;
+	}
+
 	public ObjectId getId() {
 		return id;
 	}
