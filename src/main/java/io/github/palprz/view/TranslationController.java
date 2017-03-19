@@ -88,6 +88,9 @@ public class TranslationController {
 		showNewTransactionMessage();
 	}
 
+	/**
+	 * Show message for user after added new translation.
+	 */
 	private void showNewTransactionMessage() {
 		final StringBuilder sb = new StringBuilder()
 				.append( "Added " ).append( newSearchWordTextField.getText() )
