@@ -2,13 +2,15 @@ package io.github.palprz.view;
 
 import java.util.List;
 
+import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
-import io.github.palprz.view.model.Translation;
+import io.github.palprz.view.model.TranslationDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,15 +22,26 @@ import javafx.scene.control.TextField;
 public class TranslationController {
 
 	@FXML
-	private TableView<Translation> translationTable;
+	private TableView<TranslationDTO> translationTable;
 
 	@FXML
 	private TextField searchWordTextField;
 
 	@FXML
-	private TableColumn<Translation, String> foundWordColumn;
+	private TextField newSearchWordTextField;
 
-	private static ObservableList<Translation> translations = FXCollections.observableArrayList();
+	@FXML
+	private TextField newTranslationTextField;
+
+	@FXML
+	private Label messageNewTransaction;
+
+	@FXML
+	private TableColumn<TranslationDTO, String> foundWordColumn;
+
+	private static ObservableList<TranslationDTO> translations = FXCollections.observableArrayList();
+
+	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 
 	/**
 	 * Init data in window.
@@ -36,24 +49,6 @@ public class TranslationController {
 	@FXML
 	private void initialize() {
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getName() );
-	}
-
-	/**
-	 * Action to translate search word.
-	 */
-	@FXML
-	private void translate() {
-		final WordMapFacade wordMapFacade = new WordMapFacadeImpl();
-		final String searchWord = searchWordTextField.getText();
-		final List<WordMap> maps;
-		if ( searchWord.isEmpty() ) {
-			maps = wordMapFacade.getWordMap();
-		} else {
-			maps = wordMapFacade.getWordMapBySearchWord( searchWord );
-		}
-
-		populateTransactionsByWordMaps( maps );
-		translationTable.setItems( translations );
 	}
 
 	/**
@@ -65,6 +60,46 @@ public class TranslationController {
 	}
 
 	/**
+	 * Action to translate search word.
+	 */
+	@FXML
+	private void translate() {
+		final String searchWord = searchWordTextField.getText();
+		final List<WordMap> maps;
+		if ( searchWord.isEmpty() ) {
+			maps = WORD_MAP_FACADE.getWordMap();
+		} else {
+			maps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
+		}
+
+		populateTransactionsByWordMaps( maps );
+		translationTable.setItems( translations );
+	}
+
+	/**
+	 * Action to add new translation from separate tab.
+	 */
+	@FXML
+	private void addTranslation() {
+		final Word searchWord = new Word( newSearchWordTextField.getText() );
+		final Word translation = new Word( newTranslationTextField.getText() );
+		final WordMap wordMap = new WordMap( searchWord, translation );
+		WORD_MAP_FACADE.addWordMap( wordMap );
+		showNewTransactionMessage();
+	}
+
+	/**
+	 * Show message for user after added new translation.
+	 */
+	private void showNewTransactionMessage() {
+		final StringBuilder sb = new StringBuilder()
+				.append( "Added " ).append( newSearchWordTextField.getText() )
+				.append( "-" ).append( newTranslationTextField.getText() );
+
+		messageNewTransaction.setText( sb.toString() );
+	}
+
+	/**
 	 * Convert entities from database into object which application can display
 	 * on the screen.
 	 *
@@ -73,12 +108,12 @@ public class TranslationController {
 	private void populateTransactionsByWordMaps( final List<WordMap> maps ) {
 		translations.clear();
 		if ( maps.isEmpty() ) {
-			translations.add( new Translation( "No result for search word" ) );
+			translations.add( new TranslationDTO( "No result for search word" ) );
 			return;
 		}
 
 		for ( final WordMap map : maps ) {
-			translations.add( new Translation( map.getTranslation().getName() ) );
+			translations.add( new TranslationDTO( map.getTranslation().getName() ) );
 		}
 	}
 }

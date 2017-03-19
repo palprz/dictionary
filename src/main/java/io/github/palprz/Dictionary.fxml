@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.TranslationController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0">
-        <items>
-          <AnchorPane prefHeight="400.0" prefWidth="400.0">
-               <children>
-                  <TextField fx:id="searchWordTextField" layoutX="4.0" layoutY="63.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" onAction="#onEnter"/>
-                  <Button layoutX="91.0" layoutY="117.0" mnemonicParsing="false" onAction="#translate" text="Translate" />
-               </children>
-            </AnchorPane>
-            <TableView fx:id="translationTable" prefHeight="398.0" prefWidth="454.0">
-              <columns>
-                <TableColumn fx:id="foundWordColumn" minWidth="200.0" prefWidth="200.0" text="Translations" />
-              </columns>
-            </TableView>
-        </items>
-      </SplitPane>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Translations">
+               <content>
+                  <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0">
+                    <items>
+                      <AnchorPane prefHeight="400.0" prefWidth="400.0">
+                           <children>
+                              <TextField fx:id="searchWordTextField" layoutX="4.0" layoutY="63.0" onAction="#onEnter" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" />
+                              <Button layoutX="20.0" layoutY="105.0" mnemonicParsing="false" onAction="#translate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="translationTable" prefHeight="400.0">
+                          <columns>
+                            <TableColumn fx:id="foundWordColumn" minWidth="200.0" prefWidth="418.0" text="Translations" />
+                          </columns>
+                        </TableView>
+                    </items>
+                  </SplitPane>
+               </content>
+          </Tab>
+          <Tab text="Add new translation">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="newSearchWordTextField" layoutX="36.0" layoutY="50.0" />
+                        <TextField fx:id="newTranslationTextField" layoutX="212.0" layoutY="50.0" />
+                        <Button layoutX="414.0" layoutY="50.0" mnemonicParsing="false" onAction="#addTranslation" text="Add translation" />
+                        <Label layoutX="36.0" layoutY="33.0" text="Search word" />
+                        <Label layoutX="212.0" layoutY="33.0" text="Translation" />
+                        <Label fx:id="messageNewTransaction" layoutX="36.0" layoutY="96.0" />
+                     </children>
+                  </Pane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

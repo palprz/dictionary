@@ -19,6 +19,13 @@ public class Word {
 	@Property( "name" )
 	private String name;
 
+	public Word() {
+	}
+
+	public Word( final String nameVal ) {
+		name = nameVal;
+	}
+
 	public ObjectId getId() {
 		return id;
 	}
