@@ -2,7 +2,6 @@ package io.github.palprz.view.dictionary;
 
 import java.util.List;
 
-import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
@@ -10,31 +9,20 @@ import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
- * Main controller for Dictionary.fxml to implement logic for displaying
- * translations in application.
+ * Controller for Dictionary window - main application window.
  */
 public class DictionaryWindowController {
-
-	@FXML
-	private TableView<TranslationTableDTO> translationTable;
 
 	@FXML
 	private TextField searchWordTextField;
 
 	@FXML
-	private TextField newSearchWordTextField;
-
-	@FXML
-	private TextField newTranslationTextField;
-
-	@FXML
-	private Label messageNewTransaction;
+	private TableView<TranslationTableDTO> translationTable;
 
 	@FXML
 	private TableColumn<TranslationTableDTO, String> foundWordColumn;
@@ -56,14 +44,26 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void onEnter() {
-		translate();
+		processTranslate();
+	}
+
+	//TODO javadoc
+	@FXML
+	private void processAddContextMenu() {
+		System.out.println( "adding translation" );
+	}
+
+	//TODO javadoc
+	@FXML
+	private void processEditContextMenu() {
+		System.out.println( "editing translation" );
 	}
 
 	/**
 	 * Action to translate search word.
 	 */
 	@FXML
-	private void translate() {
+	private void processTranslate() {
 		final String searchWord = searchWordTextField.getText();
 		final List<WordMap> maps;
 		if ( searchWord.isEmpty() ) {
@@ -74,29 +74,6 @@ public class DictionaryWindowController {
 
 		populateTransactionsByWordMaps( maps );
 		translationTable.setItems( translations );
-	}
-
-	/**
-	 * Action to add new translation from separate tab.
-	 */
-	@FXML
-	private void addTranslation() {
-		final Word searchWord = new Word( newSearchWordTextField.getText() );
-		final Word translation = new Word( newTranslationTextField.getText() );
-		final WordMap wordMap = new WordMap( searchWord, translation );
-		WORD_MAP_FACADE.addWordMap( wordMap );
-		showNewTransactionMessage();
-	}
-
-	/**
-	 * Show message for user after added new translation.
-	 */
-	private void showNewTransactionMessage() {
-		final StringBuilder sb = new StringBuilder()
-				.append( "Added " ).append( newSearchWordTextField.getText() )
-				.append( "-" ).append( newTranslationTextField.getText() );
-
-		messageNewTransaction.setText( sb.toString() );
 	}
 
 	/**
