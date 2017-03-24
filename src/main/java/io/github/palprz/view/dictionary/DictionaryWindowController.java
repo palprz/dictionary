@@ -1,4 +1,4 @@
-package io.github.palprz.view;
+package io.github.palprz.view.dictionary;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
-import io.github.palprz.view.model.TranslationDTO;
+import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,10 +19,10 @@ import javafx.scene.control.TextField;
  * Main controller for Dictionary.fxml to implement logic for displaying
  * translations in application.
  */
-public class TranslationController {
+public class DictionaryWindowController {
 
 	@FXML
-	private TableView<TranslationDTO> translationTable;
+	private TableView<TranslationTableDTO> translationTable;
 
 	@FXML
 	private TextField searchWordTextField;
@@ -37,9 +37,9 @@ public class TranslationController {
 	private Label messageNewTransaction;
 
 	@FXML
-	private TableColumn<TranslationDTO, String> foundWordColumn;
+	private TableColumn<TranslationTableDTO, String> foundWordColumn;
 
-	private static ObservableList<TranslationDTO> translations = FXCollections.observableArrayList();
+	private static ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 
@@ -108,12 +108,12 @@ public class TranslationController {
 	private void populateTransactionsByWordMaps( final List<WordMap> maps ) {
 		translations.clear();
 		if ( maps.isEmpty() ) {
-			translations.add( new TranslationDTO( "No result for search word" ) );
+			translations.add( new TranslationTableDTO( "No result for search word" ) );
 			return;
 		}
 
 		for ( final WordMap map : maps ) {
-			translations.add( new TranslationDTO( map.getTranslation().getName() ) );
+			translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
 		}
 	}
 }

@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Dictionary extends Application {
 
 	private static final String CSS_URL = "/io/github/palprz/resource/dictionary.css";
-	private static final String MAIN_FXML_NAME = "Dictionary.fxml";
+	private static final String MAIN_FXML_NAME = "/io/github/palprz/view/dictionary/Dictionary.fxml";
 
 	/**
 	 * Main method.
