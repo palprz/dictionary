@@ -5,7 +5,6 @@ import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -14,25 +13,28 @@ import javafx.scene.control.TextField;
 public class TranslationWindowController {
 
 	@FXML
-	private TextField addSearchWordTextField;
+	private TextField addSearchWordField;
 
 	@FXML
-	private TextField addTranslationTextField;
+	private TextField addTranslationField;
 
 	@FXML
-	private TextField editOldSearchWordTextField;
+	private TextField editOldSearchWordField;
 
 	@FXML
-	private TextField editOldTranslationTextField;
+	private TextField editOldTranslationField;
 
 	@FXML
-	private TextField editNewSearchWordTextField;
+	private TextField editNewSearchWordField;
 
 	@FXML
-	private TextField editNewTranslationTextField;
+	private TextField editNewTranslationField;
 
 	@FXML
-	private Label messageNewTransaction;
+	private TextField removeSearchWordField;
+
+	@FXML
+	private TextField removeTranslationField;
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 
@@ -41,18 +43,18 @@ public class TranslationWindowController {
 	 */
 	@FXML
 	private void processAdd() {
-		final Word searchWord = new Word( addSearchWordTextField.getText() );
-		final Word translation = new Word( addTranslationTextField.getText() );
+		final Word searchWord = new Word( addSearchWordField.getText() );
+		final Word translation = new Word( addTranslationField.getText() );
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
 	}
 
 	@FXML
 	private void processEdit() {
-		final String oldSearchWord = editOldSearchWordTextField.getText();
-		final String oldTranslation = editOldTranslationTextField.getText();
-		final String newSearchWord = editNewSearchWordTextField.getText();
-		final String newTranslation = editNewTranslationTextField.getText();
+		final String oldSearchWord = editOldSearchWordField.getText();
+		final String oldTranslation = editOldTranslationField.getText();
+		final String newSearchWord = editNewSearchWordField.getText();
+		final String newTranslation = editNewTranslationField.getText();
 
 		final WordMap oldWordMap =
 				WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( oldSearchWord, oldTranslation );
@@ -60,4 +62,10 @@ public class TranslationWindowController {
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
 	}
 
+	@FXML
+	private void processRemove() {
+		final String searchWord = removeSearchWordField.getText();
+		final String translation = removeTranslationField.getText();
+		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
+	}
 }

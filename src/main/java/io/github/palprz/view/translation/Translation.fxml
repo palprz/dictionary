@@ -12,14 +12,18 @@
          <children>
             <Label layoutX="32.0" layoutY="40.0" text="Add translation" />
             <Label layoutX="25.0" layoutY="138.0" text="Edit translation" />
-            <TextField fx:id="addSearchWordTextField" layoutX="25.0" layoutY="70.0" promptText="search word" />
-            <TextField fx:id="addTranslationTextField" layoutX="241.0" layoutY="70.0" promptText="translation" />
+            <TextField fx:id="addSearchWordField" layoutX="25.0" layoutY="70.0" promptText="search word" />
+            <TextField fx:id="addTranslationField" layoutX="241.0" layoutY="70.0" promptText="translation" />
             <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
-            <TextField fx:id="editOldSearchWordTextField" layoutX="25.0" layoutY="177.0" />
-            <TextField fx:id="editOldTranslationTextField" layoutX="241.0" layoutY="177.0" />
-            <TextField fx:id="editNewSearchWordTextField" layoutX="25.0" layoutY="229.0" />
-            <TextField fx:id="editNewTranslationTextField" layoutX="241.0" layoutY="229.0" />
+            <TextField fx:id="editOldSearchWordField" layoutX="25.0" layoutY="177.0" />
+            <TextField fx:id="editOldTranslationField" layoutX="241.0" layoutY="177.0" />
+            <TextField fx:id="editNewSearchWordField" layoutX="25.0" layoutY="229.0" />
+            <TextField fx:id="editNewTranslationField" layoutX="241.0" layoutY="229.0" />
             <Button layoutX="443.0" layoutY="229.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Label layoutX="32.0" layoutY="273.0" text="Remove translation" />
+            <TextField fx:id="removeSearchWordField" layoutX="25.0" layoutY="321.0" />
+            <TextField fx:id="removeTranslationField" layoutX="241.0" layoutY="321.0" />
+            <Button layoutX="435.0" layoutY="321.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
          </children></Pane>
    </children>
 </AnchorPane>

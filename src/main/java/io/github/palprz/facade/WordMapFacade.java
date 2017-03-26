@@ -44,4 +44,12 @@ public interface WordMapFacade {
 	 * @param newTranslation The new translation.
 	 */
 	public void updateWordMap( final WordMap wordMap, final String newSearch, final String newTranslation );
+
+	/**
+	 * Remove WordMap from database with provided details.
+	 *
+	 * @param searchWord The search word of WordMap.
+	 * @param translation The translation of WordMap.
+	 */
+	public void removeWordMap( final String searchWord, final String translation );
 }

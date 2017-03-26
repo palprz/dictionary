@@ -15,7 +15,7 @@
         <items>
           <AnchorPane prefHeight="400.0" prefWidth="400.0">
                <children>
-                  <TextField fx:id="searchWordTextField" layoutX="4.0" layoutY="63.0" onAction="#onEnter" prefWidth="200.0" promptText="search word" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" />
+                  <TextField fx:id="searchWordField" layoutX="4.0" layoutY="63.0" onAction="#onEnter" prefWidth="200.0" promptText="search word" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" />
                   <Button layoutX="20.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
                </children>
             </AnchorPane>
@@ -28,6 +28,7 @@
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#processAddContextMenu" text="Add" />
                         <MenuItem mnemonicParsing="false" onAction="#processEditContextMenu" text="Edit" />
+                        <MenuItem mnemonicParsing="false" onAction="#processRemoveContextMenu" text="Remove" />
                     </items>
                   </ContextMenu>
                </contextMenu>

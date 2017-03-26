@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 public class DictionaryWindowController {
 
 	@FXML
-	private TextField searchWordTextField;
+	private TextField searchWordField;
 
 	@FXML
 	private TableView<TranslationTableDTO> translationTable;
@@ -63,6 +63,16 @@ public class DictionaryWindowController {
 	}
 
 	/**
+	 * Handle 'Remove' option from context menu on table.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processRemoveContextMenu() throws IOException {
+		System.out.println( "remove translation" );
+		STAGE_BUILDER.createTranslation();
+	}
+
+	/**
 	 * Action connected with key 'enter'.
 	 */
 	@FXML
@@ -75,7 +85,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslate() {
-		final String searchWord = searchWordTextField.getText();
+		final String searchWord = searchWordField.getText();
 		final List<WordMap> maps;
 		if ( searchWord.isEmpty() ) {
 			maps = WORD_MAP_FACADE.getWordMap();
