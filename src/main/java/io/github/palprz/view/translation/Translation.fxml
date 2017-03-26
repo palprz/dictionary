@@ -15,6 +15,11 @@
             <TextField fx:id="addSearchWordTextField" layoutX="25.0" layoutY="70.0" promptText="search word" />
             <TextField fx:id="addTranslationTextField" layoutX="241.0" layoutY="70.0" promptText="translation" />
             <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <TextField fx:id="editOldSearchWordTextField" layoutX="25.0" layoutY="177.0" />
+            <TextField fx:id="editOldTranslationTextField" layoutX="241.0" layoutY="177.0" />
+            <TextField fx:id="editNewSearchWordTextField" layoutX="25.0" layoutY="229.0" />
+            <TextField fx:id="editNewTranslationTextField" layoutX="241.0" layoutY="229.0" />
+            <Button layoutX="443.0" layoutY="229.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
          </children></Pane>
    </children>
 </AnchorPane>
