@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.translation.TranslationWindowController">
+   <children>
+      <Pane prefHeight="457.0" prefWidth="571.0">
+         <children>
+            <Label layoutX="32.0" layoutY="40.0" text="Add translation" />
+            <Label layoutX="25.0" layoutY="138.0" text="Edit translation" />
+            <TextField fx:id="addSearchWordTextField" layoutX="25.0" layoutY="70.0" promptText="search word" />
+            <TextField fx:id="addTranslationTextField" layoutX="241.0" layoutY="70.0" promptText="translation" />
+            <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <TextField fx:id="editOldSearchWordTextField" layoutX="25.0" layoutY="177.0" />
+            <TextField fx:id="editOldTranslationTextField" layoutX="241.0" layoutY="177.0" />
+            <TextField fx:id="editNewSearchWordTextField" layoutX="25.0" layoutY="229.0" />
+            <TextField fx:id="editNewTranslationTextField" layoutX="241.0" layoutY="229.0" />
+            <Button layoutX="443.0" layoutY="229.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+         </children></Pane>
+   </children>
+</AnchorPane>

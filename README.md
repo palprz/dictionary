@@ -34,7 +34,7 @@ https://www.codacy.com/app/palprz/dictionary/dashboard
 
 ##### Translations
  - Description: User can add/edit/delete/display translations.
- - Is it done? :x:
+ - Is it done? :heavy_check_mark:
  - Screenshots: none for now
  
 ##### Search for translation
