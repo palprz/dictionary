@@ -45,4 +45,19 @@ public class StageBuilder {
 		stage.setScene( scene );
 		stage.show();
 	}
+
+	/**
+	 * Create the stage for Language window.
+	 * @throws IOException throws from loading AnchorPane from FXMLLoader.
+	 */
+	public void createLanguage() throws IOException {
+		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( Constant.LANGUAGE_FXML_URL ) );
+		final Parent root1 = ( Parent ) fxmlLoader.load();
+		final Scene scene = new Scene( root1 );
+		scene.getStylesheets().add( getClass().getResource( Constant.CSS_URL ).toExternalForm() );
+		final Stage stage = new Stage();
+		stage.setTitle( Constant.LANGUAGE_WINDOW_TITLE );
+		stage.setScene( scene );
+		stage.show();
+	}
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane prefHeight="504.0" prefWidth="588.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="io.github.palprz.view.language.LanguageWindowController">
+   <children>
+      <Pane prefHeight="504.0" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="35.0" layoutY="40.0" text="Add language" />
+            <Label layoutX="35.0" layoutY="161.0" text="Edit language" />
+            <Label layoutX="35.0" layoutY="291.0" text="Remove language" />
+            <TextField fx:id="addNameField" layoutX="35.0" layoutY="96.0" />
+            <TextField fx:id="editOldNameField" layoutX="35.0" layoutY="214.0" promptText="old name" />
+            <TextField fx:id="editNewNameField" layoutX="35.0" layoutY="356.0" />
+            <TextField fx:id="removeNameField" layoutX="219.0" layoutY="214.0" promptText="new name" />
+            <Button layoutX="451.0" layoutY="96.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <Button layoutX="451.0" layoutY="214.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Button layoutX="451.0" layoutY="356.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
