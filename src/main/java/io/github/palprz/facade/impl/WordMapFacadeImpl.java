@@ -74,4 +74,18 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 		Database.getDataStore().update( query, updateQuery );
 	}
+
+	@Override
+	public void removeWordMap( final String searchWordVal, final String translationVal ) {
+
+		final Word search = WORD_FACADE.getWordByName( searchWordVal );
+
+		final Word translation = WORD_FACADE.getWordByName( translationVal );
+
+		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
+				.field( "searchWord" ).equal( search )
+				.field( "translation" ).equal( translation );
+
+		Database.getDataStore().delete( query );
+	}
 }
