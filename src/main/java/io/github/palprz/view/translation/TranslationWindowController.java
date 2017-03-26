@@ -28,22 +28,11 @@ public class TranslationWindowController {
 	 * Action to add new translation from separate tab.
 	 */
 	@FXML
-	private void addTranslation() {
+	private void processAdd() {
 		final Word searchWord = new Word( addSearchWordTextField.getText() );
 		final Word translation = new Word( addTranslationTextField.getText() );
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
-		showNewTransactionMessage();
-	}
-
-	/**
-	 * Show message for user after added new translation.
-	 */
-	private void showNewTransactionMessage() {
-		final StringBuilder sb = new StringBuilder().append( "Added " ).append( addSearchWordTextField.getText() )
-				.append( "-" ).append( addTranslationTextField.getText() );
-
-		messageNewTransaction.setText( sb.toString() );
 	}
 
 }

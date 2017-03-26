@@ -1,10 +1,12 @@
 package io.github.palprz.view.dictionary;
 
+import java.io.IOException;
 import java.util.List;
 
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
+import io.github.palprz.view.StageBuilder;
 import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +32,7 @@ public class DictionaryWindowController {
 	private static ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
+	private static final StageBuilder STAGE_BUILDER = new StageBuilder();
 
 	/**
 	 * Init data in window.
@@ -40,23 +43,31 @@ public class DictionaryWindowController {
 	}
 
 	/**
+	 * Handle 'Add' option from context menu on table.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processAddContextMenu() throws IOException {
+		System.out.println( "adding translation" );
+		STAGE_BUILDER.createTranslation();
+	}
+
+	/**
+	 * Handle 'Edit' option from context menu on table.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processEditContextMenu() throws IOException {
+		System.out.println( "editing translation" );
+		STAGE_BUILDER.createTranslation();
+	}
+
+	/**
 	 * Action connected with key 'enter'.
 	 */
 	@FXML
 	private void onEnter() {
 		processTranslate();
-	}
-
-	//TODO javadoc
-	@FXML
-	private void processAddContextMenu() {
-		System.out.println( "adding translation" );
-	}
-
-	//TODO javadoc
-	@FXML
-	private void processEditContextMenu() {
-		System.out.println( "editing translation" );
 	}
 
 	/**
