@@ -43,6 +43,15 @@ public class DictionaryWindowController {
 	}
 
 	/**
+	 * Handle new Language window.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processLanguageWindow() throws IOException {
+		STAGE_BUILDER.createLanguage();
+	}
+
+	/**
 	 * Handle 'Add' option from context menu on table.
 	 * @throws IOException
 	 */

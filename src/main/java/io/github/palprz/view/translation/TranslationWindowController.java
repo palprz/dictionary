@@ -47,6 +47,7 @@ public class TranslationWindowController {
 		final Word translation = new Word( addTranslationField.getText() );
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
+		System.out.println( "Translation added" );
 	}
 
 	@FXML
@@ -60,6 +61,7 @@ public class TranslationWindowController {
 				WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( oldSearchWord, oldTranslation );
 
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
+		System.out.println( "Translation edited" );
 	}
 
 	@FXML
@@ -67,5 +69,6 @@ public class TranslationWindowController {
 		final String searchWord = removeSearchWordField.getText();
 		final String translation = removeTranslationField.getText();
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
+		System.out.println( "Translation removed" );
 	}
 }

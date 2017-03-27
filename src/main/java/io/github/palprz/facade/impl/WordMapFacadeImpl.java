@@ -53,7 +53,6 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public void updateWordMap( final WordMap wordMap, final String newSearchVal, final String newTranslationVal ) {
-
 		Word newSearchWord = WORD_FACADE.getWordByName( newSearchVal );
 		if ( newSearchWord == null ) {
 			newSearchWord = WORD_FACADE.addWord( newSearchVal );
@@ -77,9 +76,7 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public void removeWordMap( final String searchWordVal, final String translationVal ) {
-
 		final Word search = WORD_FACADE.getWordByName( searchWordVal );
-
 		final Word translation = WORD_FACADE.getWordByName( translationVal );
 
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
