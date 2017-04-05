@@ -33,8 +33,7 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public List<WordMap> getWordMapBySearchWord( final String searchWord ) {
-		final Word word = WORD_FACADE.getWordByName( searchWord );
-
+		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWord, null ); //TODO
 		return Database.getDataStore().createQuery( WordMap.class ).field( "searchWord" ).equal( word ).asList();
 	}
 
@@ -53,12 +52,12 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public void updateWordMap( final WordMap wordMap, final String newSearchVal, final String newTranslationVal ) {
-		Word newSearchWord = WORD_FACADE.getWordByName( newSearchVal );
+		Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchVal, null ); //TODO missing language
 		if ( newSearchWord == null ) {
 			newSearchWord = WORD_FACADE.addWord( newSearchVal );
 		}
 
-		Word newTranslationWord = WORD_FACADE.getWordByName( newTranslationVal );
+		Word newTranslationWord = WORD_FACADE.getWordByNameAndLanguage( newTranslationVal, null ); //TODO missing language
 		if ( newTranslationWord == null ) {
 			newTranslationWord = WORD_FACADE.addWord( newTranslationVal );
 		}
@@ -76,8 +75,8 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public void removeWordMap( final String searchWordVal, final String translationVal ) {
-		final Word search = WORD_FACADE.getWordByName( searchWordVal );
-		final Word translation = WORD_FACADE.getWordByName( translationVal );
+		final Word search = WORD_FACADE.getWordByNameAndLanguage( searchWordVal, null ); //TODO missing language
+		final Word translation = WORD_FACADE.getWordByNameAndLanguage( translationVal, null ); //TODO missing language
 
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
 				.field( "searchWord" ).equal( search )

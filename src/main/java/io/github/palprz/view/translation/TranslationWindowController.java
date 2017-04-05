@@ -1,8 +1,10 @@
 package io.github.palprz.view.translation;
 
+import io.github.palprz.entity.Language;
 import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
 import io.github.palprz.facade.WordMapFacade;
+import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -16,35 +18,65 @@ public class TranslationWindowController {
 	private TextField addSearchWordField;
 
 	@FXML
+	private TextField addSearchWordLangField;
+
+	@FXML
 	private TextField addTranslationField;
+
+	@FXML
+	private TextField addTranslationLangField;
+
 
 	@FXML
 	private TextField editOldSearchWordField;
 
 	@FXML
+	private TextField editOldSearchWordLangField;
+
+	@FXML
 	private TextField editOldTranslationField;
+
+	@FXML
+	private TextField editOldTranslationLangField;
 
 	@FXML
 	private TextField editNewSearchWordField;
 
 	@FXML
+	private TextField editNewSearchWordLangField;
+
+	@FXML
 	private TextField editNewTranslationField;
+
+	@FXML
+	private TextField editNewTranslationLangField;
+
 
 	@FXML
 	private TextField removeSearchWordField;
 
 	@FXML
+	private TextField removeSearchWordLangField;
+
+	@FXML
 	private TextField removeTranslationField;
 
+	@FXML
+	private TextField removeTranslationLangField;
+
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
+
+	private static final LanguageFacadeImpl LANGUAGE_FACADE = new LanguageFacadeImpl();
 
 	/**
 	 * Action to add new translation from separate tab.
 	 */
 	@FXML
 	private void processAdd() {
-		final Word searchWord = new Word( addSearchWordField.getText() );
-		final Word translation = new Word( addTranslationField.getText() );
+		final Language langSearchWord = LANGUAGE_FACADE.getLanguageByName( addSearchWordLangField.getText() );
+		final Word searchWord = new Word( addSearchWordField.getText(), langSearchWord );
+		final Language langTranslation = LANGUAGE_FACADE.getLanguageByName( addTranslationLangField.getText() );
+		final Word translation = new Word( addTranslationField.getText(), langTranslation );
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
 		System.out.println( "Translation added" );

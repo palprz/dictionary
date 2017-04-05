@@ -11,7 +11,7 @@ public interface WordMapFacade {
 	 *
 	 * @param wordMap The WordMap entity to add
 	 */
-	public void addWordMap( final WordMap wordMap );
+	public void addWordMap( WordMap wordMap );
 
 	/**
 	 * Get all WordMap entities from database.
@@ -25,7 +25,7 @@ public interface WordMapFacade {
 	 *
 	 * @return Collection with WordMap entities.
 	 */
-	public List<WordMap> getWordMapBySearchWord( final String searchWord );
+	public List<WordMap> getWordMapBySearchWord( String searchWord );
 
 	/**
 	 * Get WordMap entity from database related with provided searched word and translation.
@@ -34,7 +34,7 @@ public interface WordMapFacade {
 	 * @param translation The string with translation name.
 	 * @return WordMap entity.
 	 */
-	public WordMap getWordMapBySearchWordAndTranslation( final String searchWord, final String translation );
+	public WordMap getWordMapBySearchWordAndTranslation( String searchWord, String translation );
 
 	/**
 	 * Update WordMap entity with new details.
@@ -43,7 +43,7 @@ public interface WordMapFacade {
 	 * @param newSearch The new search word.
 	 * @param newTranslation The new translation.
 	 */
-	public void updateWordMap( final WordMap wordMap, final String newSearch, final String newTranslation );
+	public void updateWordMap( WordMap wordMap, String newSearch, String newTranslation );
 
 	/**
 	 * Remove WordMap from database with provided details.
@@ -51,5 +51,5 @@ public interface WordMapFacade {
 	 * @param searchWord The search word of WordMap.
 	 * @param translation The translation of WordMap.
 	 */
-	public void removeWordMap( final String searchWord, final String translation );
+	public void removeWordMap( String searchWord, String translation );
 }
