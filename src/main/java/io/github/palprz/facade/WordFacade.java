@@ -9,8 +9,9 @@ public interface WordFacade {
 	 * Add a Word entity to the database.
 	 *
 	 * @param name The name of Word entity.
+	 * @param language The language of Word entity.
 	 */
-	public Word addWord( String name );
+	public void addWord( String name, Language language );
 
 	/**
 	 * Get a Word by name from database.

@@ -24,6 +24,7 @@ public class Word {
 	private Language language;
 
 	public Word() {
+		//empty constructor
 	}
 
 	public Word( final String nameVal, final Language langVal ) {

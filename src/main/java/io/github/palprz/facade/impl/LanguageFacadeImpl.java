@@ -9,25 +9,26 @@ import io.github.palprz.facade.LanguageFacade;
 
 public class LanguageFacadeImpl implements LanguageFacade {
 
+	private static final String NAME_FIELD = "name";
+
 	@Override
 	public Language getLanguageByName( final String name ) {
-		return Database.getDataStore().createQuery( Language.class ).field( "name" ).equal( name ).get();
+		return Database.getDataStore().createQuery( Language.class )
+				.field( NAME_FIELD ).equal( name ).get();
 	}
 
 	@Override
-	public Language addLanguage( final String name ) {
-		final Language lang = new Language( name );
-		Database.getDataStore().save( lang );
-		return lang;
+	public void addLanguage( final String name ) {
+		Database.getDataStore().save( new Language( name ) );
 	}
 
 	@Override
 	public void updateLanguage( final String oldName, final String newName ) {
 		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
-				.field( "name" ).equal( oldName );
+				.field( NAME_FIELD ).equal( oldName );
 
 		final UpdateOperations<Language> updateQuery = Database.getDataStore().createUpdateOperations( Language.class )
-				.set( "name", newName );
+				.set( NAME_FIELD, newName );
 
 		Database.getDataStore().update( query, updateQuery );
 	}

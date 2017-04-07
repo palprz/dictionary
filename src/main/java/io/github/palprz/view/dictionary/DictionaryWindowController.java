@@ -29,7 +29,7 @@ public class DictionaryWindowController {
 	@FXML
 	private TableColumn<TranslationTableDTO, String> foundWordColumn;
 
-	private static ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
+	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 	private static final StageBuilder STAGE_BUILDER = new StageBuilder();

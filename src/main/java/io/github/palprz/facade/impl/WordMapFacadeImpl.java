@@ -13,6 +13,10 @@ import io.github.palprz.facade.WordMapFacade;
 
 public class WordMapFacadeImpl implements WordMapFacade {
 
+	private static final String NAME_FIELD = "name";
+	private static final String SEARCH_WORD_FIELD = "searchWord";
+	private static final String TRANSLATION_FIELD = "translation";
+
 	private static final WordFacadeImpl WORD_FACADE = new WordFacadeImpl();
 
 	@Override
@@ -20,7 +24,6 @@ public class WordMapFacadeImpl implements WordMapFacade {
 		final Word searchWord = wordMap.getSearchWord();
 		final Word translation = wordMap.getTranslation();
 
-		//TODO can I do it better?
 		Database.getDataStore().save( Arrays.asList( searchWord, translation ) );
 		Database.getDataStore().save( wordMap );
 	}
@@ -34,41 +37,42 @@ public class WordMapFacadeImpl implements WordMapFacade {
 	@Override
 	public List<WordMap> getWordMapBySearchWord( final String searchWord ) {
 		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWord, null ); //TODO
-		return Database.getDataStore().createQuery( WordMap.class ).field( "searchWord" ).equal( word ).asList();
+		return Database.getDataStore().createQuery( WordMap.class )
+				.field( SEARCH_WORD_FIELD ).equal( word ).asList();
 	}
 
 	@Override
 	public WordMap getWordMapBySearchWordAndTranslation( final String searchWordVal, final String translationVal ) {
-		final Word searchWord = Database.getDataStore().createQuery(
-				Word.class ).field( "name" ).equal( searchWordVal ).get();
+		final Word searchWord = Database.getDataStore().createQuery( Word.class )
+				.field( NAME_FIELD ).equal( searchWordVal ).get();
 
-		final Word translation = Database.getDataStore().createQuery(
-				Word.class ).field( "name" ).equal( translationVal ).get();
+		final Word translation = Database.getDataStore().createQuery( Word.class )
+				.field( NAME_FIELD ).equal( translationVal ).get();
 
 		return Database.getDataStore().createQuery( WordMap.class )
-				.field( "searchWord" ).equal( searchWord )
-				.field( "translation" ).equal( translation ).get();
+				.field( SEARCH_WORD_FIELD ).equal( searchWord )
+				.field( TRANSLATION_FIELD ).equal( translation ).get();
 	}
 
 	@Override
 	public void updateWordMap( final WordMap wordMap, final String newSearchVal, final String newTranslationVal ) {
-		Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchVal, null ); //TODO missing language
+		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchVal, null ); //TODO missing language
 		if ( newSearchWord == null ) {
-			newSearchWord = WORD_FACADE.addWord( newSearchVal );
+			WORD_FACADE.addWord( newSearchVal, null ); //TODO missing language
 		}
 
-		Word newTranslationWord = WORD_FACADE.getWordByNameAndLanguage( newTranslationVal, null ); //TODO missing language
+		final Word newTranslationWord = WORD_FACADE.getWordByNameAndLanguage( newTranslationVal, null ); //TODO missing language
 		if ( newTranslationWord == null ) {
-			newTranslationWord = WORD_FACADE.addWord( newTranslationVal );
+			WORD_FACADE.addWord( newTranslationVal, null ); //TODO missing language
 		}
 
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
-				.field( "searchWord" ).equal( wordMap.getSearchWord() )
-				.field( "translation" ).equal( wordMap.getTranslation() );
+				.field( SEARCH_WORD_FIELD ).equal( wordMap.getSearchWord() )
+				.field( TRANSLATION_FIELD ).equal( wordMap.getTranslation() );
 
 		final UpdateOperations<WordMap> updateQuery = Database.getDataStore().createUpdateOperations( WordMap.class )
-				.set( "searchWord", newSearchWord )
-				.set( "translation", newTranslationWord );
+				.set( SEARCH_WORD_FIELD, newSearchWord )
+				.set( TRANSLATION_FIELD, newTranslationWord );
 
 		Database.getDataStore().update( query, updateQuery );
 	}
@@ -79,8 +83,8 @@ public class WordMapFacadeImpl implements WordMapFacade {
 		final Word translation = WORD_FACADE.getWordByNameAndLanguage( translationVal, null ); //TODO missing language
 
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
-				.field( "searchWord" ).equal( search )
-				.field( "translation" ).equal( translation );
+				.field( SEARCH_WORD_FIELD ).equal( search )
+				.field( TRANSLATION_FIELD ).equal( translation );
 
 		Database.getDataStore().delete( query );
 	}

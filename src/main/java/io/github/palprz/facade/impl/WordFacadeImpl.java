@@ -7,19 +7,20 @@ import io.github.palprz.facade.WordFacade;
 
 public class WordFacadeImpl implements WordFacade {
 
+	private static final String NAME_FIELD = "name";
+	private static final String LANG_FIELD = "lang";
+
 	private static final LanguageFacadeImpl test = new LanguageFacadeImpl();
 
 	@Override
-	public Word addWord( final String name ) {
-		final Word word = new Word( name, null );
-		Database.getDataStore().save( word );
-		return word;
+	public void addWord( final String name, final Language language ) {
+		Database.getDataStore().save( new Word( name, language ) );
 	}
 
 	@Override
 	public Word getWordByNameAndLanguage( final String name, final Language language ) {
 		return Database.getDataStore().createQuery( Word.class )
-				.field( "name" ).equal( name )
-				.field( "lang" ).equal( language ).get();
+				.field( NAME_FIELD ).equal( name )
+				.field( LANG_FIELD ).equal( language ).get();
 	}
 }

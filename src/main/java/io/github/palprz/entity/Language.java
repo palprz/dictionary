@@ -20,6 +20,7 @@ public class Language {
 	private String name;
 
 	public Language() {
+		//empty constructor
 	}
 
 	public Language( final String nameVal ) {

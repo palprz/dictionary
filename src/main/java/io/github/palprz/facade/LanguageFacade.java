@@ -16,7 +16,7 @@ public interface LanguageFacade {
 	 *
 	 * @param name The name of Language entity.
 	 */
-	public Language addLanguage( String name );
+	public void addLanguage( String name );
 
 	/**
 	 * Edit a Language entity by provided new name.
