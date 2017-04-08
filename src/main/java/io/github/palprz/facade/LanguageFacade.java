@@ -6,6 +6,7 @@ public interface LanguageFacade {
 
 	/**
 	 * Get a Language entity by provided name.
+	 *
 	 * @param name Provided name
 	 * @return Language connected with provided name
 	 */
@@ -14,9 +15,9 @@ public interface LanguageFacade {
 	/**
 	 * Add a Language entity to the database.
 	 *
-	 * @param name The name of Language entity.
+	 * @param language The entity to save.
 	 */
-	public void addLanguage( String name );
+	public void addLanguage( Language language );
 
 	/**
 	 * Edit a Language entity by provided new name.

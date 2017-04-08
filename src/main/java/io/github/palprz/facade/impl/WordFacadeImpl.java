@@ -13,8 +13,8 @@ public class WordFacadeImpl implements WordFacade {
 	private static final LanguageFacadeImpl test = new LanguageFacadeImpl();
 
 	@Override
-	public void addWord( final String name, final Language language ) {
-		Database.getDataStore().save( new Word( name, language ) );
+	public void addWord( final Word word ) {
+		Database.getDataStore().save( word );
 	}
 
 	@Override

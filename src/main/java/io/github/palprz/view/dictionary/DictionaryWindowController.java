@@ -95,15 +95,9 @@ public class DictionaryWindowController {
 	@FXML
 	private void processTranslate() {
 		final String searchWord = searchWordField.getText();
-		final List<WordMap> maps;
-		if ( searchWord.isEmpty() ) {
-			maps = WORD_MAP_FACADE.getWordMap();
-		} else {
-			maps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
-		}
+		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
 
 		populateTransactionsByWordMaps( maps );
-		translationTable.setItems( translations );
 	}
 
 	/**
@@ -116,11 +110,12 @@ public class DictionaryWindowController {
 		translations.clear();
 		if ( maps.isEmpty() ) {
 			translations.add( new TranslationTableDTO( "No result for search word" ) );
-			return;
+		} else {
+			for ( final WordMap map : maps ) {
+				translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
+			}
 		}
 
-		for ( final WordMap map : maps ) {
-			translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
-		}
+		translationTable.setItems( translations );
 	}
 }

@@ -1,5 +1,6 @@
 package io.github.palprz.view.language;
 
+import io.github.palprz.entity.Language;
 import io.github.palprz.facade.LanguageFacade;
 import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import javafx.fxml.FXML;
@@ -23,14 +24,14 @@ public class LanguageWindowController {
 
 	@FXML
 	private void processAdd() {
-		LANGUAGE_FACADE.addLanguage( addNameField.getText() );
+		LANGUAGE_FACADE.addLanguage( new Language( addNameField.getText() ) );
 		System.out.println( "Language added" );
 	}
 
 	@FXML
 	private void processEdit() {
-		System.out.println( "Language edited" );
 		LANGUAGE_FACADE.updateLanguage( editOldNameField.getText(), editNewNameField.getText() );
+		System.out.println( "Language edited" );
 	}
 
 	@FXML

@@ -18,8 +18,8 @@ public class LanguageFacadeImpl implements LanguageFacade {
 	}
 
 	@Override
-	public void addLanguage( final String name ) {
-		Database.getDataStore().save( new Language( name ) );
+	public void addLanguage( final Language language ) {
+		Database.getDataStore().save( language );
 	}
 
 	@Override

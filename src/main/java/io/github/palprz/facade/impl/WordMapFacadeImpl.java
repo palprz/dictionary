@@ -58,12 +58,12 @@ public class WordMapFacadeImpl implements WordMapFacade {
 	public void updateWordMap( final WordMap wordMap, final String newSearchVal, final String newTranslationVal ) {
 		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchVal, null ); //TODO missing language
 		if ( newSearchWord == null ) {
-			WORD_FACADE.addWord( newSearchVal, null ); //TODO missing language
+//			WORD_FACADE.addWord( newSearchVal, null ); //TODO missing language
 		}
 
 		final Word newTranslationWord = WORD_FACADE.getWordByNameAndLanguage( newTranslationVal, null ); //TODO missing language
 		if ( newTranslationWord == null ) {
-			WORD_FACADE.addWord( newTranslationVal, null ); //TODO missing language
+//			WORD_FACADE.addWord( newTranslationVal, null ); //TODO missing language
 		}
 
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
