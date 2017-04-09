@@ -29,61 +29,37 @@ public class WordMapFacadeImpl implements WordMapFacade {
 	}
 
 	@Override
-	public List<WordMap> getWordMap() {
-		final Query< WordMap > query = Database.getDataStore().createQuery( WordMap.class );
-		return query.asList();
-	}
-
-	@Override
-	public List<WordMap> getWordMapBySearchWord( final String searchWord ) {
-		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWord, null ); //TODO
+	public List<WordMap> getWordMapBySearchWord( final Word searchWord ) {
 		return Database.getDataStore().createQuery( WordMap.class )
-				.field( SEARCH_WORD_FIELD ).equal( word ).asList();
+				.field( SEARCH_WORD_FIELD ).equal( searchWord ).asList();
 	}
 
 	@Override
-	public WordMap getWordMapBySearchWordAndTranslation( final String searchWordVal, final String translationVal ) {
-		final Word searchWord = Database.getDataStore().createQuery( Word.class )
-				.field( NAME_FIELD ).equal( searchWordVal ).get();
-
-		final Word translation = Database.getDataStore().createQuery( Word.class )
-				.field( NAME_FIELD ).equal( translationVal ).get();
-
+	public WordMap getWordMapBySearchWordAndTranslation(
+			final Word searchWord,
+			final Word translation ) {
 		return Database.getDataStore().createQuery( WordMap.class )
 				.field( SEARCH_WORD_FIELD ).equal( searchWord )
 				.field( TRANSLATION_FIELD ).equal( translation ).get();
 	}
 
 	@Override
-	public void updateWordMap( final WordMap wordMap, final String newSearchVal, final String newTranslationVal ) {
-		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchVal, null ); //TODO missing language
-		if ( newSearchWord == null ) {
-//			WORD_FACADE.addWord( newSearchVal, null ); //TODO missing language
-		}
-
-		final Word newTranslationWord = WORD_FACADE.getWordByNameAndLanguage( newTranslationVal, null ); //TODO missing language
-		if ( newTranslationWord == null ) {
-//			WORD_FACADE.addWord( newTranslationVal, null ); //TODO missing language
-		}
-
+	public void updateWordMap( final WordMap wordMap, final Word newSearch, final Word newTranslation ) {
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
 				.field( SEARCH_WORD_FIELD ).equal( wordMap.getSearchWord() )
 				.field( TRANSLATION_FIELD ).equal( wordMap.getTranslation() );
 
 		final UpdateOperations<WordMap> updateQuery = Database.getDataStore().createUpdateOperations( WordMap.class )
-				.set( SEARCH_WORD_FIELD, newSearchWord )
-				.set( TRANSLATION_FIELD, newTranslationWord );
+				.set( SEARCH_WORD_FIELD, newSearch )
+				.set( TRANSLATION_FIELD, newTranslation );
 
 		Database.getDataStore().update( query, updateQuery );
 	}
 
 	@Override
-	public void removeWordMap( final String searchWordVal, final String translationVal ) {
-		final Word search = WORD_FACADE.getWordByNameAndLanguage( searchWordVal, null ); //TODO missing language
-		final Word translation = WORD_FACADE.getWordByNameAndLanguage( translationVal, null ); //TODO missing language
-
+	public void removeWordMap( final Word searchWord, final Word translation ) {
 		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class )
-				.field( SEARCH_WORD_FIELD ).equal( search )
+				.field( SEARCH_WORD_FIELD ).equal( searchWord )
 				.field( TRANSLATION_FIELD ).equal( translation );
 
 		Database.getDataStore().delete( query );

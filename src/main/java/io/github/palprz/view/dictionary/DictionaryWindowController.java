@@ -3,8 +3,14 @@ package io.github.palprz.view.dictionary;
 import java.io.IOException;
 import java.util.List;
 
+import io.github.palprz.entity.Language;
+import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
+import io.github.palprz.facade.LanguageFacade;
+import io.github.palprz.facade.WordFacade;
 import io.github.palprz.facade.WordMapFacade;
+import io.github.palprz.facade.impl.LanguageFacadeImpl;
+import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import io.github.palprz.view.StageBuilder;
 import io.github.palprz.view.model.TranslationTableDTO;
@@ -24,6 +30,9 @@ public class DictionaryWindowController {
 	private TextField searchWordField;
 
 	@FXML
+	private TextField searchWordLangField;
+
+	@FXML
 	private TableView<TranslationTableDTO> translationTable;
 
 	@FXML
@@ -32,6 +41,8 @@ public class DictionaryWindowController {
 	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
+	private static final LanguageFacade LANGUAGE_FACADE = new LanguageFacadeImpl();
+	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
 	private static final StageBuilder STAGE_BUILDER = new StageBuilder();
 
 	/**
@@ -94,8 +105,9 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslate() {
-		final String searchWord = searchWordField.getText();
-		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
+		final Language language = LANGUAGE_FACADE.getLanguageByName( searchWordLangField.getText() );
+		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWordField.getText(), language );
+		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
 
 		populateTransactionsByWordMaps( maps );
 	}

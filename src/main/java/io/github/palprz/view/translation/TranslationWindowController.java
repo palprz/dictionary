@@ -113,13 +113,38 @@ public class TranslationWindowController {
 
 	@FXML
 	private void processEdit() {
-		final String oldSearchWord = editOldSearchWordField.getText();
-		final String oldTranslation = editOldTranslationField.getText();
-		final String newSearchWord = editNewSearchWordField.getText();
-		final String newTranslation = editNewTranslationField.getText();
+		final String oldSearchWordName = editOldSearchWordField.getText();
+		final Language oldSearchWordLang = LANGUAGE_FACADE.getLanguageByName( editOldSearchWordLangField.getText() );
+		final String oldTranslationName = editOldTranslationField.getText();
+		final Language oldTranslationLang = LANGUAGE_FACADE.getLanguageByName( editOldTranslationLangField.getText() );
+
+		final Word oldSearchWord = WORD_FACADE.getWordByNameAndLanguage( oldSearchWordName, oldSearchWordLang );
+		final Word oldTranslation = WORD_FACADE.getWordByNameAndLanguage( oldTranslationName, oldTranslationLang );
 
 		final WordMap oldWordMap =
 				WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( oldSearchWord, oldTranslation );
+
+		final String newSearchWordName = editNewSearchWordField.getText();
+		final Language newSearchWordLang = LANGUAGE_FACADE.getLanguageByName( editNewSearchWordLangField.getText() );
+		if ( newSearchWordLang == null ) {
+			LANGUAGE_FACADE.addLanguage( newSearchWordLang );
+		}
+
+		final String newTranslationName = editNewTranslationField.getText();
+		final Language newTranslationLang = LANGUAGE_FACADE.getLanguageByName( editNewTranslationLangField.getText() );
+		if ( newTranslationLang == null ) {
+			LANGUAGE_FACADE.addLanguage( newTranslationLang );
+		}
+
+		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchWordName, newSearchWordLang );
+		if ( newSearchWord == null ) {
+			WORD_FACADE.addWord( newSearchWord );
+		}
+
+		final Word newTranslation = WORD_FACADE.getWordByNameAndLanguage( newTranslationName, newTranslationLang );
+		if ( newTranslation == null ) {
+			WORD_FACADE.addWord( newTranslation );
+		}
 
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
 		System.out.println( "Translation edited" );
@@ -127,8 +152,14 @@ public class TranslationWindowController {
 
 	@FXML
 	private void processRemove() {
-		final String searchWord = removeSearchWordField.getText();
-		final String translation = removeTranslationField.getText();
+		final Language searchWordLang = LANGUAGE_FACADE.getLanguageByName( removeSearchWordLangField.getText() );
+		final Word searchWord =
+				WORD_FACADE.getWordByNameAndLanguage( removeSearchWordField.getText(), searchWordLang );
+
+		final Language translationLang = LANGUAGE_FACADE.getLanguageByName( removeTranslationLangField.getText() );
+		final Word translation =
+				WORD_FACADE.getWordByNameAndLanguage( removeTranslationField.getText(), translationLang );
+
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
 		System.out.println( "Translation removed" );
 	}

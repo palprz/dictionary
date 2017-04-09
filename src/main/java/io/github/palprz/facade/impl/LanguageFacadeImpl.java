@@ -32,4 +32,12 @@ public class LanguageFacadeImpl implements LanguageFacade {
 
 		Database.getDataStore().update( query, updateQuery );
 	}
+
+	@Override
+	public void removeLanguage( final String name ) {
+		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
+				.field( NAME_FIELD ).equal( name );
+
+		Database.getDataStore().delete( query );
+	}
 }

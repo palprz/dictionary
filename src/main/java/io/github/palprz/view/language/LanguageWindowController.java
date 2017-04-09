@@ -36,6 +36,7 @@ public class LanguageWindowController {
 
 	@FXML
 	private void processRemove() {
+		LANGUAGE_FACADE.removeLanguage( removeNameField.getText() );
 		System.out.println( "Language removed" );
 	}
 }

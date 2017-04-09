@@ -10,8 +10,6 @@ public class WordFacadeImpl implements WordFacade {
 	private static final String NAME_FIELD = "name";
 	private static final String LANG_FIELD = "lang";
 
-	private static final LanguageFacadeImpl test = new LanguageFacadeImpl();
-
 	@Override
 	public void addWord( final Word word ) {
 		Database.getDataStore().save( word );

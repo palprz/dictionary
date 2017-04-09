@@ -26,4 +26,11 @@ public interface LanguageFacade {
 	 * @param newName The new name for Language entity.
 	 */
 	public void updateLanguage( String oldName, String newName );
+
+	/**
+	 * Remove a Language entity from database.
+	 *
+	 * @param name The name of entity to remove.
+	 */
+	public void removeLanguage( String name );
 }
