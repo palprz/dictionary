@@ -1,8 +1,17 @@
 package io.github.palprz.facade;
 
+import java.util.List;
+
 import io.github.palprz.entity.Language;
 
 public interface LanguageFacade {
+
+	/**
+	 * Get all Language entities.
+	 *
+	 * @return Collection with Language entity
+	 */
+	public List<Language> getAllLanguage();
 
 	/**
 	 * Get a Language entity by provided name.
