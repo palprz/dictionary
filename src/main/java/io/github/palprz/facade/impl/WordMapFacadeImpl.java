@@ -13,11 +13,8 @@ import io.github.palprz.facade.WordMapFacade;
 
 public class WordMapFacadeImpl implements WordMapFacade {
 
-	private static final String NAME_FIELD = "name";
 	private static final String SEARCH_WORD_FIELD = "searchWord";
 	private static final String TRANSLATION_FIELD = "translation";
-
-	private static final WordFacadeImpl WORD_FACADE = new WordFacadeImpl();
 
 	@Override
 	public void addWordMap( final WordMap wordMap ) {

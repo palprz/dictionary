@@ -68,7 +68,6 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processAddContextMenu() throws IOException {
-		System.out.println( "adding translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 
@@ -78,7 +77,6 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processEditContextMenu() throws IOException {
-		System.out.println( "editing translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 
@@ -88,7 +86,6 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processRemoveContextMenu() throws IOException {
-		System.out.println( "remove translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 

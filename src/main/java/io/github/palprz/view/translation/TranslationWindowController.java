@@ -76,6 +76,7 @@ public class TranslationWindowController {
 	@FXML
 	private void processAdd() {
 		Language langSearchWord = LANGUAGE_FACADE.getLanguageByName( addSearchWordLangField.getText() );
+		//TODO languages should be in dropdown list, so it will be impossible to add anything what is not in the database
 		if ( langSearchWord == null ) {
 			langSearchWord = new Language();
 			langSearchWord.setName( addSearchWordLangField.getText() );
@@ -108,7 +109,6 @@ public class TranslationWindowController {
 		//TODO check if WordMap is already in the database (avoid duplicates)
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
-		System.out.println( "Translation added" );
 	}
 
 	@FXML
@@ -147,7 +147,6 @@ public class TranslationWindowController {
 		}
 
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
-		System.out.println( "Translation edited" );
 	}
 
 	@FXML
@@ -161,6 +160,5 @@ public class TranslationWindowController {
 				WORD_FACADE.getWordByNameAndLanguage( removeTranslationField.getText(), translationLang );
 
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
-		System.out.println( "Translation removed" );
 	}
 }

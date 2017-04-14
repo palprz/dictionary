@@ -25,18 +25,15 @@ public class LanguageWindowController {
 	@FXML
 	private void processAdd() {
 		LANGUAGE_FACADE.addLanguage( new Language( addNameField.getText() ) );
-		System.out.println( "Language added" );
 	}
 
 	@FXML
 	private void processEdit() {
 		LANGUAGE_FACADE.updateLanguage( editOldNameField.getText(), editNewNameField.getText() );
-		System.out.println( "Language edited" );
 	}
 
 	@FXML
 	private void processRemove() {
 		LANGUAGE_FACADE.removeLanguage( removeNameField.getText() );
-		System.out.println( "Language removed" );
 	}
 }
