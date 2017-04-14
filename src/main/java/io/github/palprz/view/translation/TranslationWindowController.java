@@ -1,5 +1,8 @@
 package io.github.palprz.view.translation;
 
+import java.util.Arrays;
+import java.util.List;
+
 import io.github.palprz.entity.Language;
 import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
@@ -9,6 +12,7 @@ import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 /**
@@ -20,75 +24,68 @@ public class TranslationWindowController {
 	private TextField addSearchWordField;
 
 	@FXML
-	private TextField addSearchWordLangField;
+	private ComboBox<Language> addSearchWordLangCombo;
 
 	@FXML
 	private TextField addTranslationField;
 
 	@FXML
-	private TextField addTranslationLangField;
+	private ComboBox<Language> addTranslationLangCombo;
 
 
 	@FXML
 	private TextField editOldSearchWordField;
 
 	@FXML
-	private TextField editOldSearchWordLangField;
+	private ComboBox<Language> editOldSearchWordLangCombo;
 
 	@FXML
 	private TextField editOldTranslationField;
 
 	@FXML
-	private TextField editOldTranslationLangField;
+	private ComboBox<Language> editOldTranslationLangCombo;
 
 	@FXML
 	private TextField editNewSearchWordField;
 
 	@FXML
-	private TextField editNewSearchWordLangField;
+	private ComboBox<Language> editNewSearchWordLangCombo;
 
 	@FXML
 	private TextField editNewTranslationField;
 
 	@FXML
-	private TextField editNewTranslationLangField;
+	private ComboBox<Language> editNewTranslationLangCombo;
 
 
 	@FXML
 	private TextField removeSearchWordField;
 
 	@FXML
-	private TextField removeSearchWordLangField;
+	private ComboBox<Language> removeSearchWordLangCombo;
 
 	@FXML
 	private TextField removeTranslationField;
 
 	@FXML
-	private TextField removeTranslationLangField;
+	private ComboBox<Language> removeTranslationLangCombo;
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 	private static final LanguageFacadeImpl LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
+
+	@FXML
+	private void initialize() {
+		refreshLanguageCombo();
+	}
 
 	/**
 	 * Action to add new translation from separate tab.
 	 */
 	@FXML
 	private void processAdd() {
-		Language langSearchWord = LANGUAGE_FACADE.getLanguageByName( addSearchWordLangField.getText() );
-		//TODO languages should be in dropdown list, so it will be impossible to add anything what is not in the database
-		if ( langSearchWord == null ) {
-			langSearchWord = new Language();
-			langSearchWord.setName( addSearchWordLangField.getText() );
-			LANGUAGE_FACADE.addLanguage( langSearchWord );
-		}
-
-		Language langTranslation = LANGUAGE_FACADE.getLanguageByName( addTranslationLangField.getText() );
-		if ( langTranslation == null ) {
-			langTranslation = new Language();
-			langTranslation.setName( addTranslationLangField.getText() );
-			LANGUAGE_FACADE.addLanguage( langTranslation );
-		}
+		final Language langSearchWord = addSearchWordLangCombo.getSelectionModel().getSelectedItem();
+		final Language langTranslation = addTranslationLangCombo.getSelectionModel().getSelectedItem();
 
 		Word searchWord = WORD_FACADE.getWordByNameAndLanguage( addSearchWordField.getText(), langSearchWord );
 		if ( searchWord == null ) {
@@ -114,9 +111,9 @@ public class TranslationWindowController {
 	@FXML
 	private void processEdit() {
 		final String oldSearchWordName = editOldSearchWordField.getText();
-		final Language oldSearchWordLang = LANGUAGE_FACADE.getLanguageByName( editOldSearchWordLangField.getText() );
+		final Language oldSearchWordLang = editOldSearchWordLangCombo.getSelectionModel().getSelectedItem();
 		final String oldTranslationName = editOldTranslationField.getText();
-		final Language oldTranslationLang = LANGUAGE_FACADE.getLanguageByName( editOldTranslationLangField.getText() );
+		final Language oldTranslationLang = editOldTranslationLangCombo.getSelectionModel().getSelectedItem();
 
 		final Word oldSearchWord = WORD_FACADE.getWordByNameAndLanguage( oldSearchWordName, oldSearchWordLang );
 		final Word oldTranslation = WORD_FACADE.getWordByNameAndLanguage( oldTranslationName, oldTranslationLang );
@@ -125,21 +122,15 @@ public class TranslationWindowController {
 				WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( oldSearchWord, oldTranslation );
 
 		final String newSearchWordName = editNewSearchWordField.getText();
-		final Language newSearchWordLang = LANGUAGE_FACADE.getLanguageByName( editNewSearchWordLangField.getText() );
-		if ( newSearchWordLang == null ) {
-			LANGUAGE_FACADE.addLanguage( newSearchWordLang );
-		}
-
-		final String newTranslationName = editNewTranslationField.getText();
-		final Language newTranslationLang = LANGUAGE_FACADE.getLanguageByName( editNewTranslationLangField.getText() );
-		if ( newTranslationLang == null ) {
-			LANGUAGE_FACADE.addLanguage( newTranslationLang );
-		}
+		final Language newSearchWordLang = editNewSearchWordLangCombo.getSelectionModel().getSelectedItem();
 
 		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchWordName, newSearchWordLang );
 		if ( newSearchWord == null ) {
 			WORD_FACADE.addWord( newSearchWord );
 		}
+
+		final String newTranslationName = editNewTranslationField.getText();
+		final Language newTranslationLang = editNewTranslationLangCombo.getSelectionModel().getSelectedItem();
 
 		final Word newTranslation = WORD_FACADE.getWordByNameAndLanguage( newTranslationName, newTranslationLang );
 		if ( newTranslation == null ) {
@@ -151,14 +142,31 @@ public class TranslationWindowController {
 
 	@FXML
 	private void processRemove() {
-		final Language searchWordLang = LANGUAGE_FACADE.getLanguageByName( removeSearchWordLangField.getText() );
+		final Language searchWordLang = removeSearchWordLangCombo.getSelectionModel().getSelectedItem();
 		final Word searchWord =
 				WORD_FACADE.getWordByNameAndLanguage( removeSearchWordField.getText(), searchWordLang );
 
-		final Language translationLang = LANGUAGE_FACADE.getLanguageByName( removeTranslationLangField.getText() );
+		final Language translationLang = removeTranslationLangCombo.getSelectionModel().getSelectedItem();
 		final Word translation =
 				WORD_FACADE.getWordByNameAndLanguage( removeTranslationField.getText(), translationLang );
 
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
+	}
+
+	private void refreshLanguageCombo() {
+		final List<Language> languages = LANGUAGE_FACADE.getAllLanguage();
+		final List<ComboBox> comboxes = Arrays.asList(
+				addSearchWordLangCombo, addTranslationLangCombo,
+
+				editOldSearchWordLangCombo, editOldTranslationLangCombo,
+				editNewSearchWordLangCombo, editNewTranslationLangCombo,
+
+				removeSearchWordLangCombo, removeTranslationLangCombo
+			);
+
+		for ( final ComboBox<Language> combo : comboxes ) {
+			combo.getItems().clear();
+			combo.getItems().setAll( languages );
+		}
 	}
 }

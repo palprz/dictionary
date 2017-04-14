@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,14 +25,14 @@
             <TextField fx:id="removeSearchWordField" layoutX="25.0" layoutY="489.0" promptText="search word" />
             <TextField fx:id="removeTranslationField" layoutX="217.0" layoutY="489.0" promptText="translation" />
             <Button layoutX="432.0" layoutY="489.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
-            <TextField fx:id="addSearchWordLangField" layoutX="21.0" layoutY="114.0" />
-            <TextField fx:id="addTranslationLangField" layoutX="241.0" layoutY="114.0" />
-            <TextField fx:id="editOldSearchWordLangField" layoutX="21.0" layoutY="258.0" />
-            <TextField fx:id="editOldTranslationLangField" layoutX="211.0" layoutY="258.0" />
-            <TextField fx:id="editNewSearchWordLangField" layoutX="27.0" layoutY="356.0" />
-            <TextField fx:id="editNewTranslationLangField" layoutX="211.0" layoutY="356.0" />
-            <TextField fx:id="removeSearchWordLangField" layoutX="25.0" layoutY="524.0" />
-            <TextField fx:id="removeTranslationLangField" layoutX="217.0" layoutY="524.0" />
+            <ComboBox fx:id="addSearchWordLangCombo" layoutX="24.0" layoutY="105.0" prefWidth="150.0" />
+            <ComboBox fx:id="addTranslationLangCombo" layoutX="240.0" layoutY="105.0" prefWidth="150.0" />
+            <ComboBox fx:id="editOldSearchWordLangCombo" layoutX="20.0" layoutY="271.0" prefWidth="150.0" />
+            <ComboBox fx:id="editOldTranslationLangCombo" layoutX="211.0" layoutY="259.0" prefWidth="150.0" />
+            <ComboBox fx:id="editNewSearchWordLangCombo" layoutX="20.0" layoutY="342.0" prefWidth="150.0" />
+            <ComboBox fx:id="editNewTranslationLangCombo" layoutX="216.0" layoutY="355.0" prefWidth="150.0" />
+            <ComboBox fx:id="removeSearchWordLangCombo" layoutX="20.0" layoutY="537.0" prefWidth="150.0" />
+            <ComboBox fx:id="removeTranslationLangCombo" layoutX="216.0" layoutY="537.0" prefWidth="150.0" />
          </children></Pane>
    </children>
 </AnchorPane>

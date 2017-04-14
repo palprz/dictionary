@@ -1,5 +1,7 @@
 package io.github.palprz.facade.impl;
 
+import java.util.List;
+
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
@@ -10,6 +12,11 @@ import io.github.palprz.facade.LanguageFacade;
 public class LanguageFacadeImpl implements LanguageFacade {
 
 	private static final String NAME_FIELD = "name";
+
+	@Override
+	public List<Language> getAllLanguage() {
+		return Database.getDataStore().createQuery( Language.class ).asList();
+	}
 
 	@Override
 	public Language getLanguageByName( final String name ) {

@@ -17,6 +17,7 @@ import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,10 +28,10 @@ import javafx.scene.control.TextField;
 public class DictionaryWindowController {
 
 	@FXML
-	private TextField searchWordField;
+	private ComboBox<Language> searchWordLangCombo;
 
 	@FXML
-	private TextField searchWordLangField;
+	private TextField searchWordField;
 
 	@FXML
 	private TableView<TranslationTableDTO> translationTable;
@@ -51,6 +52,7 @@ public class DictionaryWindowController {
 	@FXML
 	private void initialize() {
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getName() );
+		refreshLanguageCombo();
 	}
 
 	/**
@@ -102,7 +104,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslate() {
-		final Language language = LANGUAGE_FACADE.getLanguageByName( searchWordLangField.getText() );
+		final Language language = searchWordLangCombo.getSelectionModel().getSelectedItem();
 		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWordField.getText(), language );
 		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
 
@@ -126,5 +128,13 @@ public class DictionaryWindowController {
 		}
 
 		translationTable.setItems( translations );
+	}
+
+	/**
+	 * Refresh Languages in combobox on Dictionary Window.
+	 */
+	private void refreshLanguageCombo() {
+		searchWordLangCombo.getItems().clear();
+		searchWordLangCombo.getItems().addAll( LANGUAGE_FACADE.getAllLanguage() );
 	}
 }

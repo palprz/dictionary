@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -28,7 +29,7 @@
                <children>
                   <TextField fx:id="searchWordField" layoutX="4.0" layoutY="63.0" onAction="#onEnter" prefWidth="200.0" promptText="search word" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" />
                   <Button layoutX="20.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
-                  <TextField fx:id="searchWordLangField" layoutX="23.0" layoutY="27.0" prefHeight="25.0" prefWidth="126.0" promptText="language" />
+                  <ComboBox fx:id="searchWordLangCombo" layoutX="13.0" layoutY="14.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
             <TableView fx:id="translationTable" prefHeight="400.0">
