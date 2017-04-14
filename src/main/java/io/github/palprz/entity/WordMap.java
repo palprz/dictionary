@@ -18,6 +18,7 @@ public class WordMap {
 	private Word translation;
 
 	public WordMap() {
+		//empty constructor
 	}
 
 	public WordMap( final Word searchWordVal, final Word translationVal ) {

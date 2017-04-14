@@ -7,12 +7,11 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.utils.IndexType;
 
-@Entity( "word" )
+@Entity( "language" )
 @Indexes(@Index(fields = @Field(value = "$**", type = IndexType.TEXT)))
-public class Word {
+public class Language {
 
 	@Id
 	private ObjectId id = new ObjectId();
@@ -20,16 +19,12 @@ public class Word {
 	@Property( "name" )
 	private String name;
 
-	@Reference( "lang" )
-	private Language language;
-
-	public Word() {
+	public Language() {
 		//empty constructor
 	}
 
-	public Word( final String nameVal, final Language langVal ) {
+	public Language( final String nameVal ) {
 		name = nameVal;
-		language = langVal;
 	}
 
 	public ObjectId getId() {
@@ -46,13 +41,5 @@ public class Word {
 
 	public void setName( final String name ) {
 		this.name = name;
-	}
-
-	public Language getLanguage() {
-		return language;
-	}
-
-	public void setLanguage( final Language language ) {
-		this.language = language;
 	}
 }

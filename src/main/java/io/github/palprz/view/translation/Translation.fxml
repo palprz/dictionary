@@ -8,22 +8,30 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.translation.TranslationWindowController">
    <children>
-      <Pane prefHeight="457.0" prefWidth="571.0">
+      <Pane prefHeight="600.0" prefWidth="571.0">
          <children>
             <Label layoutX="32.0" layoutY="40.0" text="Add translation" />
-            <Label layoutX="25.0" layoutY="138.0" text="Edit translation" />
+            <Label layoutX="32.0" layoutY="192.0" text="Edit translation" />
             <TextField fx:id="addSearchWordField" layoutX="25.0" layoutY="70.0" promptText="search word" />
             <TextField fx:id="addTranslationField" layoutX="241.0" layoutY="70.0" promptText="translation" />
             <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
-            <TextField fx:id="editOldSearchWordField" layoutX="25.0" layoutY="177.0" />
-            <TextField fx:id="editOldTranslationField" layoutX="241.0" layoutY="177.0" />
-            <TextField fx:id="editNewSearchWordField" layoutX="25.0" layoutY="229.0" />
-            <TextField fx:id="editNewTranslationField" layoutX="241.0" layoutY="229.0" />
-            <Button layoutX="443.0" layoutY="229.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
-            <Label layoutX="32.0" layoutY="273.0" text="Remove translation" />
-            <TextField fx:id="removeSearchWordField" layoutX="25.0" layoutY="321.0" />
-            <TextField fx:id="removeTranslationField" layoutX="241.0" layoutY="321.0" />
-            <Button layoutX="435.0" layoutY="321.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+            <TextField fx:id="editOldSearchWordField" layoutX="25.0" layoutY="222.0" promptText="old search word" />
+            <TextField fx:id="editOldTranslationField" layoutX="211.0" layoutY="222.0" promptText="old translation" />
+            <TextField fx:id="editNewSearchWordField" layoutX="25.0" layoutY="311.0" promptText="new search word" />
+            <TextField fx:id="editNewTranslationField" layoutX="211.0" layoutY="317.0" prefWidth="149.0" promptText="new translation" />
+            <Button layoutX="432.0" layoutY="222.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Label layoutX="21.0" layoutY="451.0" text="Remove translation" />
+            <TextField fx:id="removeSearchWordField" layoutX="25.0" layoutY="489.0" promptText="search word" />
+            <TextField fx:id="removeTranslationField" layoutX="217.0" layoutY="489.0" promptText="translation" />
+            <Button layoutX="432.0" layoutY="489.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+            <TextField fx:id="addSearchWordLangField" layoutX="21.0" layoutY="114.0" />
+            <TextField fx:id="addTranslationLangField" layoutX="241.0" layoutY="114.0" />
+            <TextField fx:id="editOldSearchWordLangField" layoutX="21.0" layoutY="258.0" />
+            <TextField fx:id="editOldTranslationLangField" layoutX="211.0" layoutY="258.0" />
+            <TextField fx:id="editNewSearchWordLangField" layoutX="27.0" layoutY="356.0" />
+            <TextField fx:id="editNewTranslationLangField" layoutX="211.0" layoutY="356.0" />
+            <TextField fx:id="removeSearchWordLangField" layoutX="25.0" layoutY="524.0" />
+            <TextField fx:id="removeTranslationLangField" layoutX="217.0" layoutY="524.0" />
          </children></Pane>
    </children>
 </AnchorPane>

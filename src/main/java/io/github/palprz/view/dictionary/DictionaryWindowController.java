@@ -3,8 +3,14 @@ package io.github.palprz.view.dictionary;
 import java.io.IOException;
 import java.util.List;
 
+import io.github.palprz.entity.Language;
+import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
+import io.github.palprz.facade.LanguageFacade;
+import io.github.palprz.facade.WordFacade;
 import io.github.palprz.facade.WordMapFacade;
+import io.github.palprz.facade.impl.LanguageFacadeImpl;
+import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import io.github.palprz.view.StageBuilder;
 import io.github.palprz.view.model.TranslationTableDTO;
@@ -24,14 +30,19 @@ public class DictionaryWindowController {
 	private TextField searchWordField;
 
 	@FXML
+	private TextField searchWordLangField;
+
+	@FXML
 	private TableView<TranslationTableDTO> translationTable;
 
 	@FXML
 	private TableColumn<TranslationTableDTO, String> foundWordColumn;
 
-	private static ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
+	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
+	private static final LanguageFacade LANGUAGE_FACADE = new LanguageFacadeImpl();
+	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
 	private static final StageBuilder STAGE_BUILDER = new StageBuilder();
 
 	/**
@@ -43,12 +54,20 @@ public class DictionaryWindowController {
 	}
 
 	/**
+	 * Handle new Language window.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processLanguageWindow() throws IOException {
+		STAGE_BUILDER.createLanguage();
+	}
+
+	/**
 	 * Handle 'Add' option from context menu on table.
 	 * @throws IOException
 	 */
 	@FXML
 	private void processAddContextMenu() throws IOException {
-		System.out.println( "adding translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 
@@ -58,7 +77,6 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processEditContextMenu() throws IOException {
-		System.out.println( "editing translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 
@@ -68,7 +86,6 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processRemoveContextMenu() throws IOException {
-		System.out.println( "remove translation" );
 		STAGE_BUILDER.createTranslation();
 	}
 
@@ -85,16 +102,11 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslate() {
-		final String searchWord = searchWordField.getText();
-		final List<WordMap> maps;
-		if ( searchWord.isEmpty() ) {
-			maps = WORD_MAP_FACADE.getWordMap();
-		} else {
-			maps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
-		}
+		final Language language = LANGUAGE_FACADE.getLanguageByName( searchWordLangField.getText() );
+		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWordField.getText(), language );
+		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
 
 		populateTransactionsByWordMaps( maps );
-		translationTable.setItems( translations );
 	}
 
 	/**
@@ -107,11 +119,12 @@ public class DictionaryWindowController {
 		translations.clear();
 		if ( maps.isEmpty() ) {
 			translations.add( new TranslationTableDTO( "No result for search word" ) );
-			return;
+		} else {
+			for ( final WordMap map : maps ) {
+				translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
+			}
 		}
 
-		for ( final WordMap map : maps ) {
-			translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
-		}
+		translationTable.setItems( translations );
 	}
 }
