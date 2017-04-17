@@ -32,11 +32,6 @@ public class WordFacadeImpl implements WordFacade {
 
 	@Override
 	public void removeWord( final Word word ) {
-
-//		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
-//				.field( NAME_FIELD ).equal( name );
-
-//		Database.getDataStore().delete( query );
 		Database.getDataStore().delete( word );
 	}
 }
