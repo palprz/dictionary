@@ -2,7 +2,6 @@ package io.github.palprz.facade.impl;
 
 import java.util.List;
 
-import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
 import io.github.palprz.db.Database;
@@ -30,21 +29,15 @@ public class LanguageFacadeImpl implements LanguageFacade {
 	}
 
 	@Override
-	public void updateLanguage( final String oldName, final String newName ) {
-		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
-				.field( NAME_FIELD ).equal( oldName );
-
+	public void updateLanguage( final Language oldLang, final String newName ) {
 		final UpdateOperations<Language> updateQuery = Database.getDataStore().createUpdateOperations( Language.class )
 				.set( NAME_FIELD, newName );
 
-		Database.getDataStore().update( query, updateQuery );
+		Database.getDataStore().update( oldLang, updateQuery );
 	}
 
 	@Override
-	public void removeLanguage( final String name ) {
-		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
-				.field( NAME_FIELD ).equal( name );
-
-		Database.getDataStore().delete( query );
+	public void removeLanguage( final Language language ) {
+		Database.getDataStore().delete( language );
 	}
 }

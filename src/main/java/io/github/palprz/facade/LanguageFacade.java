@@ -31,15 +31,15 @@ public interface LanguageFacade {
 	/**
 	 * Edit a Language entity by provided new name.
 	 *
-	 * @param oldName The existing old name in Language entity.
+	 * @param oldLang The existing old Language entity.
 	 * @param newName The new name for Language entity.
 	 */
-	public void updateLanguage( String oldName, String newName );
+	public void updateLanguage( Language oldLang, String newName );
 
 	/**
 	 * Remove a Language entity from database.
 	 *
-	 * @param name The name of entity to remove.
+	 * @param language The entity to remove.
 	 */
-	public void removeLanguage( String name );
+	public void removeLanguage( Language language );
 }

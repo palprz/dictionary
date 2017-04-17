@@ -1,5 +1,7 @@
 package io.github.palprz.facade.impl;
 
+import java.util.List;
+
 import io.github.palprz.db.Database;
 import io.github.palprz.entity.Language;
 import io.github.palprz.entity.Word;
@@ -20,5 +22,21 @@ public class WordFacadeImpl implements WordFacade {
 		return Database.getDataStore().createQuery( Word.class )
 				.field( NAME_FIELD ).equal( name )
 				.field( LANG_FIELD ).equal( language ).get();
+	}
+
+	@Override
+	public List<Word> getWordByLanguage( final Language language ) {
+		return Database.getDataStore().createQuery( Word.class )
+				.field( LANG_FIELD ).equal( language ).asList();
+	}
+
+	@Override
+	public void removeWord( final Word word ) {
+
+//		final Query<Language> query = Database.getDataStore().createQuery( Language.class )
+//				.field( NAME_FIELD ).equal( name );
+
+//		Database.getDataStore().delete( query );
+		Database.getDataStore().delete( word );
 	}
 }
