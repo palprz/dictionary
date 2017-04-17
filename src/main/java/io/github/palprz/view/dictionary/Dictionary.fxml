@@ -23,18 +23,19 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
-          <AnchorPane prefHeight="400.0" prefWidth="400.0">
+          <AnchorPane prefHeight="373.0" prefWidth="163.0">
                <children>
-                  <TextField fx:id="searchWordField" layoutX="4.0" layoutY="63.0" onAction="#onEnter" prefWidth="200.0" promptText="search word" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="63.0" />
-                  <Button layoutX="20.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
-                  <ComboBox fx:id="searchWordLangCombo" layoutX="13.0" layoutY="14.0" prefWidth="150.0" />
+                  <TextField fx:id="searchWordField" layoutX="14.0" layoutY="63.0" onAction="#onEnter" prefHeight="25.0" prefWidth="135.0" promptText="search word" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="63.0" />
+                  <Button layoutX="13.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
+                  <ComboBox fx:id="searchWordLangCombo" layoutX="13.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" />
+                  <Button layoutX="207.0" layoutY="63.0" mnemonicParsing="false" onAction="#processSwapWords" text="Swap words" />
                </children>
             </AnchorPane>
-            <TableView fx:id="translationTable" prefHeight="400.0">
+            <TableView fx:id="translationTable" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="foundWordColumn" minWidth="200.0" prefWidth="418.0" text="Translations" />
+                <TableColumn fx:id="foundWordColumn" minWidth="300.0" prefWidth="300.0" text="Translations" />
               </columns>
                <contextMenu>
                   <ContextMenu>

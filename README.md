@@ -44,17 +44,17 @@ https://www.codacy.com/app/palprz/dictionary/dashboard
 
 ##### Languages
 - Description: User can add/edit/remove/display languages. Each translation has got map between languages (i.e. eng-pl)
-- Is it done? :x:
+- Is it done? :heavy_check_mark:
 - Screenshots: none for now
 
 ##### Search by language
 - Description: User can find translation for specific search word and language
-- Is it done? :x:
+- Is it done? :heavy_check_mark:
 - Screenshots: none for now
 
 ##### Multiple translations
 - Description: Search word can have more than 1 translation.
-- Is it done? :x:
+- Is it done? :heavy_check_mark:
 - Screenshots: none for now
 
 ##### Remember last used language
@@ -64,7 +64,7 @@ https://www.codacy.com/app/palprz/dictionary/dashboard
 
 ##### Swap search word with selected translation
 - Description: User can swap translation with search word.
-- Is it done? :x:
+- Is it done? :heavy_check_mark:
 - Screenshots: none for now
 
 ##### Button with reset database

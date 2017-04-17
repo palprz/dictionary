@@ -137,4 +137,39 @@ public class DictionaryWindowController {
 		searchWordLangCombo.getItems().clear();
 		searchWordLangCombo.getItems().addAll( LANGUAGE_FACADE.getAllLanguage() );
 	}
+
+	/**
+	 * Action to swap words.
+	 */
+	@FXML
+	private void processSwapWords() {
+		final TranslationTableDTO selectedItem = translationTable.getSelectionModel().getSelectedItem();
+		final String name = getSwapName( selectedItem );
+		searchWordField.setText( name );
+		processTranslate();
+	}
+
+	/**
+	 * Get name for swap name in search word text field. The name will be:
+	 * - from selected item in the table
+	 * - from first item in the table if selected item is not specify
+	 * - empty String if table is empty
+	 *
+	 * @param selectedItem The selected item in the table.
+	 * @return String with name to set in search word text field
+	 */
+	private String getSwapName( final TranslationTableDTO selectedItem ) {
+		String selectedName;
+		if ( selectedItem == null ) {
+			if ( translationTable.getItems().isEmpty() ) {
+				selectedName = "";
+			} else {
+				selectedName = translationTable.getItems().get( 0 ).getName().getValue();
+			}
+		} else {
+			selectedName = selectedItem.getName().getValue();
+		}
+
+		return selectedName;
+	}
 }
