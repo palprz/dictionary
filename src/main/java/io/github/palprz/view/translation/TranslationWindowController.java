@@ -151,6 +151,15 @@ public class TranslationWindowController {
 				WORD_FACADE.getWordByNameAndLanguage( removeTranslationField.getText(), translationLang );
 
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
+		final List<WordMap> searchWordMaps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
+		if ( searchWordMaps.isEmpty() ) {
+			WORD_FACADE.removeWord( searchWord );
+		}
+
+		final List<WordMap> translationMaps = WORD_MAP_FACADE.getWordMapBySearchWord( translation );
+		if ( translationMaps.isEmpty() ) {
+			WORD_FACADE.removeWord( translation );
+		}
 	}
 
 	private void refreshLanguageCombo() {

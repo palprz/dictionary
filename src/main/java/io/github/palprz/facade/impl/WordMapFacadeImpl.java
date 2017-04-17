@@ -27,6 +27,7 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 	@Override
 	public List<WordMap> getWordMapBySearchWord( final Word searchWord ) {
+		//TODO it should be check by search word and translation
 		return Database.getDataStore().createQuery( WordMap.class )
 				.field( SEARCH_WORD_FIELD ).equal( searchWord ).asList();
 	}
