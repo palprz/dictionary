@@ -60,4 +60,19 @@ public class StageBuilder {
 		stage.setScene( scene );
 		stage.show();
 	}
+
+	/**
+	 * Create the stage for Info window.
+	 * @throws IOException throws from loading AnchorPane from FXMLLoader.
+	 */
+	public void createInfo() throws IOException {
+		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( Constant.INFO_FXML_URL ) );
+		final Parent root1 = ( Parent ) fxmlLoader.load();
+		final Scene scene = new Scene( root1 );
+		scene.getStylesheets().add( getClass().getResource( Constant.CSS_URL ).toExternalForm() );
+		final Stage stage = new Stage();
+		stage.setTitle( Constant.INFO_WINDOW_TITLE );
+		stage.setScene( scene );
+		stage.show();
+	}
 }

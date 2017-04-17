@@ -65,6 +65,15 @@ public class DictionaryWindowController {
 	}
 
 	/**
+	 * Handle new Info window.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processInfoWindow() throws IOException {
+		STAGE_BUILDER.createInfo();
+	}
+
+	/**
 	 * Handle 'Add' option from context menu on table.
 	 * @throws IOException
 	 */
