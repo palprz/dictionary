@@ -69,7 +69,7 @@ https://www.codacy.com/app/palprz/dictionary/dashboard
 
 ##### Button with reset database
 - Description: User can remove all translations and languages from database by click the button.
-- Is it done? :x:
+- Is it done? :heavy_check_mark:
 - Screenshots: none for now
 
 ##### Export/Import XML

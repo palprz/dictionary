@@ -2,6 +2,7 @@ package io.github.palprz.facade.impl;
 
 import java.util.List;
 
+import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
 import io.github.palprz.db.Database;
@@ -39,5 +40,11 @@ public class LanguageFacadeImpl implements LanguageFacade {
 	@Override
 	public void removeLanguage( final Language language ) {
 		Database.getDataStore().delete( language );
+	}
+
+	@Override
+	public void removeAllLanguages() {
+		final Query<Language> query = Database.getDataStore().createQuery( Language.class );
+		Database.getDataStore().delete( query );
 	}
 }

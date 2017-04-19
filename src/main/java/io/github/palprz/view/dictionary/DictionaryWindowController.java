@@ -17,6 +17,7 @@ import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +39,9 @@ public class DictionaryWindowController {
 
 	@FXML
 	private TableColumn<TranslationTableDTO, String> foundWordColumn;
+
+	@FXML
+	private CheckMenuItem isCheckedReset;
 
 	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
@@ -71,6 +75,20 @@ public class DictionaryWindowController {
 	@FXML
 	private void processInfoWindow() throws IOException {
 		STAGE_BUILDER.createInfo();
+	}
+
+	/**
+	 * Handle reset database.
+	 */
+	@FXML
+	private void processResetDatabase() {
+		//TODO add status which is saying something about not clicked agree for reset database
+		if ( isCheckedReset.isSelected() ) {
+			WORD_MAP_FACADE.removeAllWordMaps();
+			WORD_FACADE.removeAllWords();
+			LANGUAGE_FACADE.removeAllLanguages();
+			isCheckedReset.setSelected( false );
+		}
 	}
 
 	/**

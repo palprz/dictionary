@@ -62,4 +62,10 @@ public class WordMapFacadeImpl implements WordMapFacade {
 
 		Database.getDataStore().delete( query );
 	}
+
+	@Override
+	public void removeAllWordMaps() {
+		final Query<WordMap> query = Database.getDataStore().createQuery( WordMap.class );
+		Database.getDataStore().delete( query );
+	}
 }

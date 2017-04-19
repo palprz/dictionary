@@ -37,4 +37,9 @@ public interface WordFacade {
 	 * @param word The entity to remove.
 	 */
 	public void removeWord( Word word );
+
+	/**
+	 * Remove all Word entities in database.
+	 */
+	public void removeAllWords();
 }
