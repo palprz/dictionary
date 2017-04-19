@@ -42,4 +42,9 @@ public interface LanguageFacade {
 	 * @param language The entity to remove.
 	 */
 	public void removeLanguage( Language language );
+
+	/**
+	 * Remove all Language entities in database.
+	 */
+	public void removeAllLanguages();
 }

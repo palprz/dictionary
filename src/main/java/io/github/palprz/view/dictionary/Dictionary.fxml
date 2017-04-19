@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
@@ -21,9 +22,11 @@
               <MenuItem mnemonicParsing="false" onAction="#processLanguageWindow" text="Open window" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Info">
+            <Menu mnemonicParsing="false" text="Other">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#processInfoWindow" text="Open window" />
+                <MenuItem mnemonicParsing="false" onAction="#processInfoWindow" text="Info" />
+                  <MenuItem mnemonicParsing="false" onAction="#processResetDatabase" text="Reset database" />
+                  <CheckMenuItem fx:id="isCheckedReset" mnemonicParsing="false" text="Click to agree to reset database" />
               </items>
             </Menu>
         </menus>

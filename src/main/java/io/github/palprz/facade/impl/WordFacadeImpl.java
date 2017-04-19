@@ -2,6 +2,8 @@ package io.github.palprz.facade.impl;
 
 import java.util.List;
 
+import org.mongodb.morphia.query.Query;
+
 import io.github.palprz.db.Database;
 import io.github.palprz.entity.Language;
 import io.github.palprz.entity.Word;
@@ -33,5 +35,11 @@ public class WordFacadeImpl implements WordFacade {
 	@Override
 	public void removeWord( final Word word ) {
 		Database.getDataStore().delete( word );
+	}
+
+	@Override
+	public void removeAllWords() {
+		final Query<Word> query = Database.getDataStore().createQuery( Word.class );
+		Database.getDataStore().delete( query );
 	}
 }

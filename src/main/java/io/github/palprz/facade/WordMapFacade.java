@@ -48,4 +48,9 @@ public interface WordMapFacade {
 	 * @param translation The Word entity connected with WordMap.
 	 */
 	public void removeWordMap( Word searchWord, Word translation );
+
+	/**
+	 * Remove all WordMap entities in database.
+	 */
+	public void removeAllWordMaps();
 }
