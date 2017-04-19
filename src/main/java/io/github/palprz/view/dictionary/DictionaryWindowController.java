@@ -87,6 +87,7 @@ public class DictionaryWindowController {
 			WORD_MAP_FACADE.removeAllWordMaps();
 			WORD_FACADE.removeAllWords();
 			LANGUAGE_FACADE.removeAllLanguages();
+			isCheckedReset.setSelected( false );
 		}
 	}
 
