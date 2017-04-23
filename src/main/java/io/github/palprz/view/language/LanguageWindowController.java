@@ -8,8 +8,10 @@ import io.github.palprz.facade.LanguageFacade;
 import io.github.palprz.facade.WordFacade;
 import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
+import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LanguageWindowController {
@@ -26,6 +28,9 @@ public class LanguageWindowController {
 	@FXML
 	private ComboBox<Language> removeNameCombo;
 
+	@FXML
+	private Label status;
+
 	private static final LanguageFacade LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
 
@@ -38,6 +43,7 @@ public class LanguageWindowController {
 	private void processAdd() {
 		LANGUAGE_FACADE.addLanguage( new Language( addNameField.getText() ) );
 		refreshLanguageCombo();
+		setStatus( String.format( Constant.LANGUAGE_SUCCESS_ADD_MSG, addNameField.getText() ) );
 	}
 
 	@FXML
@@ -46,6 +52,7 @@ public class LanguageWindowController {
 		final String newName = editNewNameField.getText();
 		LANGUAGE_FACADE.updateLanguage( oldLang, newName );
 		refreshLanguageCombo();
+		setStatus( String.format( Constant.LANGUAGE_SUCCESS_EDIT_MSG, oldLang.getName(), newName ) );
 	}
 
 	@FXML
@@ -55,10 +62,9 @@ public class LanguageWindowController {
 		if ( words.isEmpty() ) {
 			LANGUAGE_FACADE.removeLanguage( langToRemove );
 			refreshLanguageCombo();
+			setStatus( String.format( Constant.LANGUAGE_SUCCESS_REMOVE_MSG,  langToRemove.getName() ) );
 		} else {
-			final StringBuilder sb = new StringBuilder( "This language is connected with '" );
-			sb.append( words.size() ).append( "' word(s) and can't be remove. Please remove connected words!" );
-			System.out.println( sb.toString() );
+			setStatus( String.format( Constant.LANGUAGE_CONNECTED_LANGUAGE_MSG,  words.size() ) );
 		}
 	}
 
@@ -72,5 +78,14 @@ public class LanguageWindowController {
 
 		removeNameCombo.getItems().clear();
 		removeNameCombo.getItems().addAll( languages );
+	}
+
+	/**
+	 * Set message in status bar.
+	 *
+	 * @param msg The message to display
+	 */
+	private void setStatus( final String msg ) {
+		status.setText( msg );
 	}
 }

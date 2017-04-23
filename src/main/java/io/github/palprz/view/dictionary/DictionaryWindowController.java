@@ -12,6 +12,7 @@ import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
+import io.github.palprz.resource.Constant;
 import io.github.palprz.view.StageBuilder;
 import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,6 +44,9 @@ public class DictionaryWindowController {
 
 	@FXML
 	private CheckMenuItem isCheckedReset;
+
+	@FXML
+	private Label status;
 
 	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
@@ -82,12 +87,14 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processResetDatabase() {
-		//TODO add status which is saying something about not clicked agree for reset database
 		if ( isCheckedReset.isSelected() ) {
 			WORD_MAP_FACADE.removeAllWordMaps();
 			WORD_FACADE.removeAllWords();
 			LANGUAGE_FACADE.removeAllLanguages();
 			isCheckedReset.setSelected( false );
+			setStatus( Constant.DICTIONARY_RESET_DB_SUCCESS_MSG );
+		} else {
+			setStatus( Constant.DICTIONARY_AGREE_RESET_DB_MSG );
 		}
 	}
 
@@ -136,6 +143,12 @@ public class DictionaryWindowController {
 		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
 
 		populateTransactionsByWordMaps( maps );
+
+		if ( word == null ) {
+			setStatus( String.format( Constant.DICTIONARY_TRANSLATE_NO_WORD_MSG, searchWordField.getText() ) );
+		} else {
+			setStatus( String.format( Constant.DICTIONARY_TRANSLATE_SUCCESS_MSG, searchWordField.getText() ) );
+		}
 	}
 
 	/**
@@ -198,5 +211,14 @@ public class DictionaryWindowController {
 		}
 
 		return selectedName;
+	}
+
+	/**
+	 * Set message in status bar.
+	 *
+	 * @param msg The message to display
+	 */
+	private void setStatus( final String msg ) {
+		status.setText( msg );
 	}
 }
