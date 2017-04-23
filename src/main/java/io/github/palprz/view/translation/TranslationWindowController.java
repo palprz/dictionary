@@ -11,8 +11,10 @@ import io.github.palprz.facade.WordMapFacade;
 import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
+import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -70,6 +72,9 @@ public class TranslationWindowController {
 	@FXML
 	private ComboBox<Language> removeTranslationLangCombo;
 
+	@FXML
+	private Label status;
+
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 	private static final LanguageFacadeImpl LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
@@ -106,6 +111,11 @@ public class TranslationWindowController {
 		//TODO check if WordMap is already in the database (avoid duplicates)
 		final WordMap wordMap = new WordMap( searchWord, translation );
 		WORD_MAP_FACADE.addWordMap( wordMap );
+		final StringBuilder sb = new StringBuilder()
+				.append( addSearchWordField.getText() )
+				.append( "-" )
+				.append( addTranslationField.getText() );
+		setStatus( String.format( Constant.TRANSLATION_SUCCESS_ADD_MSG, sb.toString() ) );
 	}
 
 	@FXML
@@ -138,6 +148,16 @@ public class TranslationWindowController {
 		}
 
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
+		final StringBuilder oldSb = new StringBuilder()
+				.append( oldSearchWordName )
+				.append( "-" )
+				.append( oldTranslationName );
+
+		final StringBuilder newSb = new StringBuilder()
+				.append( newSearchWordName )
+				.append( "-" )
+				.append( newTranslationName );
+		setStatus( String.format( Constant.TRANSLATION_SUCCESS_EDIT_MSG, oldSb.toString(), newSb.toString() ) );
 	}
 
 	@FXML
@@ -159,6 +179,11 @@ public class TranslationWindowController {
 		final List<WordMap> translationMaps = WORD_MAP_FACADE.getWordMapBySearchWord( translation );
 		if ( translationMaps.isEmpty() ) {
 			WORD_FACADE.removeWord( translation );
+			final StringBuilder sb = new StringBuilder()
+					.append( removeSearchWordField.getText() )
+					.append( "-" )
+					.append( removeTranslationField.getText() );
+			setStatus( String.format( Constant.TRANSLATION_SUCCESS_REMOVE_MSG, sb.toString() ) );
 		}
 	}
 
@@ -166,10 +191,8 @@ public class TranslationWindowController {
 		final List<Language> languages = LANGUAGE_FACADE.getAllLanguage();
 		final List<ComboBox> comboxes = Arrays.asList(
 				addSearchWordLangCombo, addTranslationLangCombo,
-
 				editOldSearchWordLangCombo, editOldTranslationLangCombo,
 				editNewSearchWordLangCombo, editNewTranslationLangCombo,
-
 				removeSearchWordLangCombo, removeTranslationLangCombo
 			);
 
@@ -177,5 +200,14 @@ public class TranslationWindowController {
 			combo.getItems().clear();
 			combo.getItems().setAll( languages );
 		}
+	}
+
+	/**
+	 * Set message in status bar.
+	 *
+	 * @param msg The message to display
+	 */
+	private void setStatus( final String msg ) {
+		status.setText( msg );
 	}
 }

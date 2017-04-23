@@ -33,6 +33,7 @@
             <ComboBox fx:id="editNewTranslationLangCombo" layoutX="216.0" layoutY="355.0" prefWidth="150.0" />
             <ComboBox fx:id="removeSearchWordLangCombo" layoutX="20.0" layoutY="537.0" prefWidth="150.0" />
             <ComboBox fx:id="removeTranslationLangCombo" layoutX="216.0" layoutY="537.0" prefWidth="150.0" />
+            <Label fx:id="status" layoutX="18.0" layoutY="578.0" />
          </children></Pane>
    </children>
 </AnchorPane>
