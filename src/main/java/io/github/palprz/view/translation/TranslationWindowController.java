@@ -134,16 +134,22 @@ public class TranslationWindowController {
 		final String newSearchWordName = editNewSearchWordField.getText();
 		final Language newSearchWordLang = editNewSearchWordLangCombo.getSelectionModel().getSelectedItem();
 
-		final Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchWordName, newSearchWordLang );
+		Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchWordName, newSearchWordLang );
 		if ( newSearchWord == null ) {
+			newSearchWord = new Word();
+			newSearchWord.setLanguage( newSearchWordLang );
+			newSearchWord.setName( newSearchWordName );
 			WORD_FACADE.addWord( newSearchWord );
 		}
 
 		final String newTranslationName = editNewTranslationField.getText();
 		final Language newTranslationLang = editNewTranslationLangCombo.getSelectionModel().getSelectedItem();
 
-		final Word newTranslation = WORD_FACADE.getWordByNameAndLanguage( newTranslationName, newTranslationLang );
+		Word newTranslation = WORD_FACADE.getWordByNameAndLanguage( newTranslationName, newTranslationLang );
 		if ( newTranslation == null ) {
+			newTranslation = new Word();
+			newTranslation.setLanguage( newTranslationLang );
+			newTranslation.setName( newTranslationName );
 			WORD_FACADE.addWord( newTranslation );
 		}
 
