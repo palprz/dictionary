@@ -38,9 +38,14 @@ public class Constant {
 	public static final String LANGUAGE_ADD_LANGUAGE_EXISTS_WARNING_MSG = "WARNING: Language '%s' already exists in the database";
 	public static final String LANGUAGE_EDIT_EMPTY_LANGUAGE_WARNING_MSG = "WARNING: Language name is empty - cannot be edit";
 
-
 	// Translation window
 	public static final String TRANSLATION_ADD_SUCCESS_MSG = "Translation '%s' added";
 	public static final String TRANSLATION_EDIT_SUCCESS_MSG = "Translation '%s' edited by '%s'";
 	public static final String TRANSLATION_REMOVE_SUCCESS_MSG = "Translation '%s' removed";
+	public static final String TRANSLATION_ADD_EMPTY_SEARCH_WORD_WARNING_MSG = "WARNING: Search word in translation is empty - cannot be add";
+	public static final String TRANSLATION_ADD_EMPTY_TRANSLATION_WARNING_MSH = "WARNING: Translation word in translation is empty - cannot be add";
+	public static final String TRANSLATION_ADD_SAME_LANGUAGE_WARNING_MSG = "WARNING: Language is the same for '%s' translation - cannot be add";
+	public static final String TRANSLATION_EDIT_EMPTY_SEARCH_WORD_WARNING_MSG = "WARNING: New search word in translation is empty - cannot be add";
+	public static final String TRANSLATION_EDIT_EMPTY_TRANSLATION_WARNING_MSG = "WARNING: New translation word in translation is empty - cannot be add";
+	public static final String TRANSLATION_EDIT_SAME_LANGUAGE_WARNING_MSG = "WARNING: New language is the same for '%' translation like old one - cannot be add";
 }
