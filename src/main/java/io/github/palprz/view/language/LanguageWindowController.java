@@ -10,6 +10,7 @@ import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -30,6 +31,12 @@ public class LanguageWindowController {
 
 	@FXML
 	private Label status;
+
+	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
 
 	private static final LanguageFacade LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
@@ -95,6 +102,10 @@ public class LanguageWindowController {
 
 		removeNameCombo.getItems().clear();
 		removeNameCombo.getItems().addAll( languages );
+
+		// it should be impossible to edit/remove language if database hasn't got languages at all
+		editButton.setDisable( languages.isEmpty() );
+		removeButton.setDisable( languages.isEmpty() );
 	}
 
 	/**

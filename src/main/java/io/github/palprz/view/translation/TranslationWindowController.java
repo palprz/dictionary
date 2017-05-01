@@ -13,6 +13,7 @@ import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -74,6 +75,15 @@ public class TranslationWindowController {
 
 	@FXML
 	private Label status;
+
+	@FXML
+	private Button addButton;
+
+	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
 
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 	private static final LanguageFacadeImpl LANGUAGE_FACADE = new LanguageFacadeImpl();
@@ -206,6 +216,10 @@ public class TranslationWindowController {
 			combo.getItems().clear();
 			combo.getItems().setAll( languages );
 		}
+
+		addButton.setDisable( languages.isEmpty() );
+		editButton.setDisable( languages.isEmpty() );
+		removeButton.setDisable( languages.isEmpty() );
 	}
 
 	/**
