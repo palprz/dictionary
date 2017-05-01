@@ -23,17 +23,24 @@ public class Constant {
 	/**
 	 * Messages to display in status bar.
 	 */
+	// Dictionary window
 	public static final String DICTIONARY_RESET_DB_SUCCESS_MSG = "Complete reseting database";
 	public static final String DICTIONARY_AGREE_RESET_DB_MSG = "You need to click agree checbox to be able to reset database";
 	public static final String DICTIONARY_TRANSLATE_SUCCESS_MSG = "Found translations for'%s'";
-	public static final String DICTIONARY_TRANSLATE_NO_WORD_MSG = "Search word '%s' for define language doesn't exist in the database";
+	public static final String DICTIONARY_NO_WORD_TRANSLATE_MSG = "Search word '%s' for define language doesn't exist in the database";
 
-	public static final String LANGUAGE_SUCCESS_ADD_MSG = "Language '%s' added";
-	public static final String LANGUAGE_SUCCESS_EDIT_MSG = "Language '%s' edited by '%s'";
-	public static final String LANGUAGE_SUCCESS_REMOVE_MSG = "Language '%s' removed";
+	// Language window
+	public static final String LANGUAGE_ADD_SUCCESS_MSG = "Language '%s' added";
+	public static final String LANGUAGE_EDIT_SUCCESS_MSG = "Language '%s' edited by '%s'";
+	public static final String LANGUAGE_REMOVE_SUCCESS_MSG = "Language '%s' removed";
 	public static final String LANGUAGE_CONNECTED_LANGUAGE_MSG = "This language is connected with %s word(s) and can't be remove. Please remove connected words!";
+	public static final String LANGUAGE_ADD_EMPTY_LANGUAGE_WARNING_MSG = "WARNING: Language name is empty - cannot be add";
+	public static final String LANGUAGE_ADD_LANGUAGE_EXISTS_WARNING_MSG = "WARNING: Language '%s' already exists in the database";
+	public static final String LANGUAGE_EDIT_EMPTY_LANGUAGE_WARNING_MSG = "WARNING: Language name is empty - cannot be edit";
 
-	public static final String TRANSLATION_SUCCESS_ADD_MSG = "Translation '%s' added";
-	public static final String TRANSLATION_SUCCESS_EDIT_MSG = "Translation '%s' edited by '%s'";
-	public static final String TRANSLATION_SUCCESS_REMOVE_MSG = "Translation '%s' removed";
+
+	// Translation window
+	public static final String TRANSLATION_ADD_SUCCESS_MSG = "Translation '%s' added";
+	public static final String TRANSLATION_EDIT_SUCCESS_MSG = "Translation '%s' edited by '%s'";
+	public static final String TRANSLATION_REMOVE_SUCCESS_MSG = "Translation '%s' removed";
 }

@@ -115,7 +115,7 @@ public class TranslationWindowController {
 				.append( addSearchWordField.getText() )
 				.append( "-" )
 				.append( addTranslationField.getText() );
-		setStatus( String.format( Constant.TRANSLATION_SUCCESS_ADD_MSG, sb.toString() ) );
+		setStatus( String.format( Constant.TRANSLATION_ADD_SUCCESS_MSG, sb.toString() ) );
 	}
 
 	@FXML
@@ -163,7 +163,7 @@ public class TranslationWindowController {
 				.append( newSearchWordName )
 				.append( "-" )
 				.append( newTranslationName );
-		setStatus( String.format( Constant.TRANSLATION_SUCCESS_EDIT_MSG, oldSb.toString(), newSb.toString() ) );
+		setStatus( String.format( Constant.TRANSLATION_EDIT_SUCCESS_MSG, oldSb.toString(), newSb.toString() ) );
 	}
 
 	@FXML
@@ -189,7 +189,7 @@ public class TranslationWindowController {
 					.append( removeSearchWordField.getText() )
 					.append( "-" )
 					.append( removeTranslationField.getText() );
-			setStatus( String.format( Constant.TRANSLATION_SUCCESS_REMOVE_MSG, sb.toString() ) );
+			setStatus( String.format( Constant.TRANSLATION_REMOVE_SUCCESS_MSG, sb.toString() ) );
 		}
 	}
 
