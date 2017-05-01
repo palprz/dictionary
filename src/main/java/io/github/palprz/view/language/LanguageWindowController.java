@@ -104,8 +104,9 @@ public class LanguageWindowController {
 		removeNameCombo.getItems().addAll( languages );
 
 		// it should be impossible to edit/remove language if database hasn't got languages at all
-		editButton.setDisable( languages.isEmpty() );
-		removeButton.setDisable( languages.isEmpty() );
+		final boolean isDisable = languages.isEmpty();
+		editButton.setDisable( isDisable );
+		removeButton.setDisable( isDisable );
 	}
 
 	/**

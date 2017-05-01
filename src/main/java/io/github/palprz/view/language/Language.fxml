@@ -16,9 +16,9 @@
             <Label layoutX="35.0" layoutY="291.0" text="Remove language" />
             <TextField fx:id="addNameField" layoutX="35.0" layoutY="96.0" />
             <TextField fx:id="editNewNameField" layoutX="219.0" layoutY="214.0" promptText="new name" />
-            <Button layoutX="451.0" layoutY="96.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
-            <Button layoutX="451.0" layoutY="214.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
-            <Button layoutX="451.0" layoutY="356.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+            <Button fx:id="addButton" layoutX="451.0" layoutY="96.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <Button fx:id="editButton" layoutX="451.0" layoutY="214.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Button fx:id="removeButton" layoutX="451.0" layoutY="356.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
             <ComboBox fx:id="removeNameCombo" layoutX="26.0" layoutY="356.0" prefWidth="150.0" />
             <ComboBox fx:id="editOldNameCombo" layoutX="34.0" layoutY="214.0" prefWidth="150.0" />
          </children>

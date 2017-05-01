@@ -99,10 +99,28 @@ public class TranslationWindowController {
 	 */
 	@FXML
 	private void processAdd() {
+		final String searchWordName = addSearchWordField.getText();
+		if ( searchWordName.isEmpty() ) {
+			setStatus( Constant.TRANSLATION_ADD_EMPTY_SEARCH_WORD_WARNING_MSG );
+			return;
+		}
+
+		final String translationName = addTranslationField.getText();
+		if ( translationName.isEmpty() ) {
+			setStatus( Constant.TRANSLATION_ADD_EMPTY_TRANSLATION_WARNING_MSH );
+			return;
+		}
+
 		final Language langSearchWord = addSearchWordLangCombo.getSelectionModel().getSelectedItem();
 		final Language langTranslation = addTranslationLangCombo.getSelectionModel().getSelectedItem();
+		if ( langSearchWord.equals( langTranslation ) ) {
+			final StringBuilder sb = new StringBuilder()
+					.append( searchWordName ).append( "-" ).append( translationName );
+			setStatus( String.format( Constant.TRANSLATION_ADD_SAME_LANGUAGE_WARNING_MSG, sb.toString() ) );
+			return;
+		}
 
-		Word searchWord = WORD_FACADE.getWordByNameAndLanguage( addSearchWordField.getText(), langSearchWord );
+		Word searchWord = WORD_FACADE.getWordByNameAndLanguage( searchWordName, langSearchWord );
 		if ( searchWord == null ) {
 			searchWord = new Word();
 			searchWord.setName( addSearchWordField.getText() );
@@ -110,21 +128,22 @@ public class TranslationWindowController {
 			WORD_FACADE.addWord( searchWord );
 		}
 
-		Word translation = WORD_FACADE.getWordByNameAndLanguage( addTranslationField.getText(), langTranslation );
+		Word translation = WORD_FACADE.getWordByNameAndLanguage( translationName, langTranslation );
 		if ( translation == null ) {
 			translation = new Word();
-			translation.setName( addTranslationField.getText() );
+			translation.setName( translationName );
 			translation.setLanguage( langTranslation );
 			WORD_FACADE.addWord( translation );
 		}
 
-		//TODO check if WordMap is already in the database (avoid duplicates)
-		final WordMap wordMap = new WordMap( searchWord, translation );
-		WORD_MAP_FACADE.addWordMap( wordMap );
+		WordMap wordMap = WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( searchWord, translation );
+		if ( wordMap == null ) {
+			wordMap = new WordMap( searchWord, translation );
+			WORD_MAP_FACADE.addWordMap( wordMap );
+		}
+
 		final StringBuilder sb = new StringBuilder()
-				.append( addSearchWordField.getText() )
-				.append( "-" )
-				.append( addTranslationField.getText() );
+				.append( searchWordName ).append( "-" ).append( translationName );
 		setStatus( String.format( Constant.TRANSLATION_ADD_SUCCESS_MSG, sb.toString() ) );
 	}
 
@@ -142,7 +161,25 @@ public class TranslationWindowController {
 				WORD_MAP_FACADE.getWordMapBySearchWordAndTranslation( oldSearchWord, oldTranslation );
 
 		final String newSearchWordName = editNewSearchWordField.getText();
+		if ( newSearchWordName.isEmpty() ) {
+			setStatus( Constant.TRANSLATION_EDIT_EMPTY_SEARCH_WORD_WARNING_MSG );
+			return;
+		}
+
+		final String newTranslationName = editNewTranslationField.getText();
+		if ( newTranslationName.isEmpty() ) {
+			setStatus( Constant.TRANSLATION_EDIT_EMPTY_TRANSLATION_WARNING_MSG );
+			return;
+		}
+
 		final Language newSearchWordLang = editNewSearchWordLangCombo.getSelectionModel().getSelectedItem();
+		final Language newTranslationLang = editNewTranslationLangCombo.getSelectionModel().getSelectedItem();
+		if ( newSearchWordLang.equals( newTranslationLang ) ) {
+			final StringBuilder sb = new StringBuilder()
+					.append( newSearchWordName ).append( "-" ).append( newTranslationName );
+			setStatus( String.format( Constant.TRANSLATION_EDIT_SAME_LANGUAGE_WARNING_MSG, sb.toString() ) );
+			return;
+		}
 
 		Word newSearchWord = WORD_FACADE.getWordByNameAndLanguage( newSearchWordName, newSearchWordLang );
 		if ( newSearchWord == null ) {
@@ -152,8 +189,6 @@ public class TranslationWindowController {
 			WORD_FACADE.addWord( newSearchWord );
 		}
 
-		final String newTranslationName = editNewTranslationField.getText();
-		final Language newTranslationLang = editNewTranslationLangCombo.getSelectionModel().getSelectedItem();
 
 		Word newTranslation = WORD_FACADE.getWordByNameAndLanguage( newTranslationName, newTranslationLang );
 		if ( newTranslation == null ) {
@@ -165,14 +200,10 @@ public class TranslationWindowController {
 
 		WORD_MAP_FACADE.updateWordMap( oldWordMap, newSearchWord, newTranslation );
 		final StringBuilder oldSb = new StringBuilder()
-				.append( oldSearchWordName )
-				.append( "-" )
-				.append( oldTranslationName );
+				.append( oldSearchWordName ).append( "-" ).append( oldTranslationName );
 
 		final StringBuilder newSb = new StringBuilder()
-				.append( newSearchWordName )
-				.append( "-" )
-				.append( newTranslationName );
+				.append( newSearchWordName ).append( "-" ).append( newTranslationName );
 		setStatus( String.format( Constant.TRANSLATION_EDIT_SUCCESS_MSG, oldSb.toString(), newSb.toString() ) );
 	}
 
@@ -196,9 +227,7 @@ public class TranslationWindowController {
 		if ( translationMaps.isEmpty() ) {
 			WORD_FACADE.removeWord( translation );
 			final StringBuilder sb = new StringBuilder()
-					.append( removeSearchWordField.getText() )
-					.append( "-" )
-					.append( removeTranslationField.getText() );
+					.append( removeSearchWordField.getText() ).append( "-" ).append( removeTranslationField.getText() );
 			setStatus( String.format( Constant.TRANSLATION_REMOVE_SUCCESS_MSG, sb.toString() ) );
 		}
 	}
@@ -217,9 +246,14 @@ public class TranslationWindowController {
 			combo.getItems().setAll( languages );
 		}
 
-		addButton.setDisable( languages.isEmpty() );
-		editButton.setDisable( languages.isEmpty() );
-		removeButton.setDisable( languages.isEmpty() );
+		/*
+		 * It should be impossible to edit/remove language if
+		 * database hasn't got languages at all or there's only 1 language
+		 */
+		final boolean isDisable = languages.isEmpty() || languages.size() == 1;
+		addButton.setDisable( isDisable );
+		editButton.setDisable( isDisable );
+		removeButton.setDisable( isDisable );
 	}
 
 	/**
