@@ -10,6 +10,7 @@ import io.github.palprz.facade.impl.LanguageFacadeImpl;
 import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,6 +32,12 @@ public class LanguageWindowController {
 	@FXML
 	private Label status;
 
+	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
+
 	private static final LanguageFacade LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
 
@@ -41,18 +48,35 @@ public class LanguageWindowController {
 
 	@FXML
 	private void processAdd() {
+		final String name = addNameField.getText();
+		if ( name.isEmpty() ) {
+			setStatus( Constant.LANGUAGE_ADD_EMPTY_LANGUAGE_WARNING_MSG );
+			return;
+		}
+
+		final Language foundLanguage = LANGUAGE_FACADE.getLanguageByName( name );
+		if ( foundLanguage != null ) {
+			setStatus( String.format( Constant.LANGUAGE_ADD_LANGUAGE_EXISTS_WARNING_MSG, name ) );
+			return;
+		}
+
 		LANGUAGE_FACADE.addLanguage( new Language( addNameField.getText() ) );
 		refreshLanguageCombo();
-		setStatus( String.format( Constant.LANGUAGE_SUCCESS_ADD_MSG, addNameField.getText() ) );
+		setStatus( String.format( Constant.LANGUAGE_ADD_SUCCESS_MSG, addNameField.getText() ) );
 	}
 
 	@FXML
 	private void processEdit() {
 		final Language oldLang = editOldNameCombo.getSelectionModel().getSelectedItem();
 		final String newName = editNewNameField.getText();
+		if ( newName.isEmpty() ) {
+			setStatus( Constant.LANGUAGE_EDIT_EMPTY_LANGUAGE_WARNING_MSG );
+			return;
+		}
+
 		LANGUAGE_FACADE.updateLanguage( oldLang, newName );
 		refreshLanguageCombo();
-		setStatus( String.format( Constant.LANGUAGE_SUCCESS_EDIT_MSG, oldLang.getName(), newName ) );
+		setStatus( String.format( Constant.LANGUAGE_EDIT_SUCCESS_MSG, oldLang.getName(), newName ) );
 	}
 
 	@FXML
@@ -62,7 +86,7 @@ public class LanguageWindowController {
 		if ( words.isEmpty() ) {
 			LANGUAGE_FACADE.removeLanguage( langToRemove );
 			refreshLanguageCombo();
-			setStatus( String.format( Constant.LANGUAGE_SUCCESS_REMOVE_MSG,  langToRemove.getName() ) );
+			setStatus( String.format( Constant.LANGUAGE_REMOVE_SUCCESS_MSG,  langToRemove.getName() ) );
 		} else {
 			setStatus( String.format( Constant.LANGUAGE_CONNECTED_LANGUAGE_MSG,  words.size() ) );
 		}
@@ -78,6 +102,10 @@ public class LanguageWindowController {
 
 		removeNameCombo.getItems().clear();
 		removeNameCombo.getItems().addAll( languages );
+
+		// it should be impossible to edit/remove language if database hasn't got languages at all
+		editButton.setDisable( languages.isEmpty() );
+		removeButton.setDisable( languages.isEmpty() );
 	}
 
 	/**

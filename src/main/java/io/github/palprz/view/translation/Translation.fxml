@@ -15,16 +15,16 @@
             <Label layoutX="32.0" layoutY="192.0" text="Edit translation" />
             <TextField fx:id="addSearchWordField" layoutX="25.0" layoutY="70.0" promptText="search word" />
             <TextField fx:id="addTranslationField" layoutX="241.0" layoutY="70.0" promptText="translation" />
-            <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <Button fx:id="addButton" layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
             <TextField fx:id="editOldSearchWordField" layoutX="25.0" layoutY="222.0" promptText="old search word" />
             <TextField fx:id="editOldTranslationField" layoutX="211.0" layoutY="222.0" promptText="old translation" />
             <TextField fx:id="editNewSearchWordField" layoutX="25.0" layoutY="311.0" promptText="new search word" />
             <TextField fx:id="editNewTranslationField" layoutX="211.0" layoutY="317.0" prefWidth="149.0" promptText="new translation" />
-            <Button layoutX="432.0" layoutY="222.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Button fx:id="editButton" layoutX="432.0" layoutY="222.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
             <Label layoutX="21.0" layoutY="451.0" text="Remove translation" />
             <TextField fx:id="removeSearchWordField" layoutX="25.0" layoutY="489.0" promptText="search word" />
             <TextField fx:id="removeTranslationField" layoutX="217.0" layoutY="489.0" promptText="translation" />
-            <Button layoutX="432.0" layoutY="489.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+            <Button fx:id="removeButton" layoutX="432.0" layoutY="489.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
             <ComboBox fx:id="addSearchWordLangCombo" layoutX="24.0" layoutY="105.0" prefWidth="150.0" />
             <ComboBox fx:id="addTranslationLangCombo" layoutX="240.0" layoutY="105.0" prefWidth="150.0" />
             <ComboBox fx:id="editOldSearchWordLangCombo" layoutX="20.0" layoutY="271.0" prefWidth="150.0" />

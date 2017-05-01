@@ -145,7 +145,7 @@ public class DictionaryWindowController {
 		populateTransactionsByWordMaps( maps );
 
 		if ( word == null ) {
-			setStatus( String.format( Constant.DICTIONARY_TRANSLATE_NO_WORD_MSG, searchWordField.getText() ) );
+			setStatus( String.format( Constant.DICTIONARY_NO_WORD_TRANSLATE_MSG, searchWordField.getText() ) );
 		} else {
 			setStatus( String.format( Constant.DICTIONARY_TRANSLATE_SUCCESS_MSG, searchWordField.getText() ) );
 		}

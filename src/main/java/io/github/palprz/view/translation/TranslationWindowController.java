@@ -13,6 +13,7 @@ import io.github.palprz.facade.impl.WordFacadeImpl;
 import io.github.palprz.facade.impl.WordMapFacadeImpl;
 import io.github.palprz.resource.Constant;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -75,6 +76,15 @@ public class TranslationWindowController {
 	@FXML
 	private Label status;
 
+	@FXML
+	private Button addButton;
+
+	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
+
 	private static final WordMapFacade WORD_MAP_FACADE = new WordMapFacadeImpl();
 	private static final LanguageFacadeImpl LANGUAGE_FACADE = new LanguageFacadeImpl();
 	private static final WordFacade WORD_FACADE = new WordFacadeImpl();
@@ -115,7 +125,7 @@ public class TranslationWindowController {
 				.append( addSearchWordField.getText() )
 				.append( "-" )
 				.append( addTranslationField.getText() );
-		setStatus( String.format( Constant.TRANSLATION_SUCCESS_ADD_MSG, sb.toString() ) );
+		setStatus( String.format( Constant.TRANSLATION_ADD_SUCCESS_MSG, sb.toString() ) );
 	}
 
 	@FXML
@@ -163,7 +173,7 @@ public class TranslationWindowController {
 				.append( newSearchWordName )
 				.append( "-" )
 				.append( newTranslationName );
-		setStatus( String.format( Constant.TRANSLATION_SUCCESS_EDIT_MSG, oldSb.toString(), newSb.toString() ) );
+		setStatus( String.format( Constant.TRANSLATION_EDIT_SUCCESS_MSG, oldSb.toString(), newSb.toString() ) );
 	}
 
 	@FXML
@@ -189,7 +199,7 @@ public class TranslationWindowController {
 					.append( removeSearchWordField.getText() )
 					.append( "-" )
 					.append( removeTranslationField.getText() );
-			setStatus( String.format( Constant.TRANSLATION_SUCCESS_REMOVE_MSG, sb.toString() ) );
+			setStatus( String.format( Constant.TRANSLATION_REMOVE_SUCCESS_MSG, sb.toString() ) );
 		}
 	}
 
@@ -206,6 +216,10 @@ public class TranslationWindowController {
 			combo.getItems().clear();
 			combo.getItems().setAll( languages );
 		}
+
+		addButton.setDisable( languages.isEmpty() );
+		editButton.setDisable( languages.isEmpty() );
+		removeButton.setDisable( languages.isEmpty() );
 	}
 
 	/**
