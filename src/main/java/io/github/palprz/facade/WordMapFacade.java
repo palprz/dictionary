@@ -15,12 +15,13 @@ public interface WordMapFacade {
 	public void addWordMap( WordMap wordMap );
 
 	/**
-	 * Get all WordMap entities from database related with provided searched word.
+	 * Get all WordMap entities from database related with provided word.
+	 * Application will search by search word and translation.
 	 *
 	 * @param searchWord The search word connected with WordMaps.
 	 * @return Collection with WordMap entities.
 	 */
-	public List<WordMap> getWordMapBySearchWord( Word searchWord );
+	public List<WordMap> getWordMapByWord( Word searchWord );
 
 	/**
 	 * Get WordMap entity from database related with provided searched word and translation.

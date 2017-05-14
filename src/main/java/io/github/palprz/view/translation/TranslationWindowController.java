@@ -224,12 +224,14 @@ public class TranslationWindowController {
 				WORD_FACADE.getWordByNameAndLanguage( removeTranslationField.getText(), translationLang );
 
 		WORD_MAP_FACADE.removeWordMap( searchWord, translation );
-		final List<WordMap> searchWordMaps = WORD_MAP_FACADE.getWordMapBySearchWord( searchWord );
+		//TODO this can be broken when I've changed the logic inside this getWordMapByWord method
+		final List<WordMap> searchWordMaps = WORD_MAP_FACADE.getWordMapByWord( searchWord );
 		if ( searchWordMaps.isEmpty() ) {
 			WORD_FACADE.removeWord( searchWord );
+			//TODO any status?
 		}
 
-		final List<WordMap> translationMaps = WORD_MAP_FACADE.getWordMapBySearchWord( translation );
+		final List<WordMap> translationMaps = WORD_MAP_FACADE.getWordMapByWord( translation );
 		if ( translationMaps.isEmpty() ) {
 			WORD_FACADE.removeWord( translation );
 			final StringBuilder sb = new StringBuilder()

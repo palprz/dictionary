@@ -26,10 +26,16 @@ public class WordMapFacadeImpl implements WordMapFacade {
 	}
 
 	@Override
-	public List<WordMap> getWordMapBySearchWord( final Word searchWord ) {
-		//TODO it should be check by search word and translation
-		return Database.getDataStore().createQuery( WordMap.class )
-				.field( SEARCH_WORD_FIELD ).equal( searchWord ).asList();
+	public List<WordMap> getWordMapByWord( final Word word ) {
+		final Query<WordMap> searchWordQuery = Database.getDataStore().createQuery( WordMap.class );
+		final List<WordMap> bySearchWordList = searchWordQuery.field( SEARCH_WORD_FIELD ).equal( word ).asList();
+
+		final Query<WordMap> translationQuery = Database.getDataStore().createQuery( WordMap.class );
+		final List<WordMap> byTranslationList = translationQuery.field( TRANSLATION_FIELD ).equal( word ).asList();
+
+		bySearchWordList.addAll( byTranslationList );
+
+		return bySearchWordList;
 	}
 
 	@Override
