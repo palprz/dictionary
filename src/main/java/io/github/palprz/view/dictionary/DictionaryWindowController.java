@@ -67,6 +67,14 @@ public class DictionaryWindowController {
 		foundWordColumn.setCellValueFactory( cellData -> cellData.getValue().getName() );
 		refreshLanguageCombo();
 	}
+	/**
+	 * Handle new Translation window.
+	 * @throws IOException
+	 */
+	@FXML
+	private void processTranslationWindow() throws IOException {
+		STAGE_BUILDER.createTranslation();
+	}
 
 	/**
 	 * Handle new Language window.
