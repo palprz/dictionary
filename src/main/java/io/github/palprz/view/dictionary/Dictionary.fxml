@@ -38,7 +38,7 @@
           <AnchorPane prefHeight="373.0" prefWidth="163.0">
                <children>
                   <TextField fx:id="searchWordField" layoutX="14.0" layoutY="63.0" onAction="#onEnter" prefHeight="25.0" prefWidth="135.0" promptText="search word" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="63.0" />
-                  <Button layoutX="13.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
+                  <Button fx:id="translateButton" layoutX="13.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
                   <ComboBox fx:id="searchWordLangCombo" layoutX="13.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" />
                   <Button layoutX="207.0" layoutY="63.0" mnemonicParsing="false" onAction="#processSwapWords" text="Swap words" />
                </children>

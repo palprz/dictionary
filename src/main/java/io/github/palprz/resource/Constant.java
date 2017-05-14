@@ -28,6 +28,7 @@ public class Constant {
 	public static final String DICTIONARY_AGREE_RESET_DB_MSG = "You need to click agree checbox to be able to reset database";
 	public static final String DICTIONARY_TRANSLATE_SUCCESS_MSG = "Found translations for'%s'";
 	public static final String DICTIONARY_NO_WORD_TRANSLATE_MSG = "Search word '%s' for define language doesn't exist in the database";
+	public static final String DICTIONARY_NO_LANGUAGES_WARNING_MSG = "WARNING: Database hasn't got minimum 2 languages - you should add some before finding translation";
 
 	// Language window
 	public static final String LANGUAGE_ADD_SUCCESS_MSG = "Language '%s' added";
