@@ -55,4 +55,18 @@ public class Word {
 	public void setLanguage( final Language language ) {
 		this.language = language;
 	}
+
+	@Override
+	public boolean equals( final Object obj ) {
+		if ( obj == null ) {
+			return false;
+		}
+
+		final Word cast = ( Word ) obj;
+		if ( cast.getId() == null ) {
+			return false;
+		}
+
+		return this.getId().equals( cast.getId() );
+	}
 }

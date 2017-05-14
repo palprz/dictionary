@@ -158,9 +158,9 @@ public class DictionaryWindowController {
 
 		final Language language = searchWordLangCombo.getSelectionModel().getSelectedItem();
 		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWordField.getText(), language );
-		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
+		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapByWord( word );
 
-		populateTransactionsByWordMaps( maps );
+		populateTransactionsByWordMaps( word, maps );
 
 		if ( word == null ) {
 			setStatus( String.format( Constant.DICTIONARY_NO_WORD_TRANSLATE_MSG, searchWordField.getText() ) );
@@ -173,15 +173,20 @@ public class DictionaryWindowController {
 	 * Convert entities from database into object which application can display
 	 * on the screen.
 	 *
+	 * @param word The word which is a search word
 	 * @param maps The collection with WordMap entities
 	 */
-	private void populateTransactionsByWordMaps( final List<WordMap> maps ) {
+	private void populateTransactionsByWordMaps( final Word word, final List<WordMap> maps ) {
 		translations.clear();
 		if ( maps.isEmpty() ) {
 			translations.add( new TranslationTableDTO( "No result for search word" ) );
 		} else {
 			for ( final WordMap map : maps ) {
-				translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
+				if ( map.getSearchWord().equals( word ) ) {
+					translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
+				} else {
+					translations.add( new TranslationTableDTO( map.getSearchWord().getName() ) );
+				}
 			}
 		}
 
