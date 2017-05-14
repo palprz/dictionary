@@ -18,6 +18,7 @@ import io.github.palprz.view.model.TranslationTableDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -47,6 +48,9 @@ public class DictionaryWindowController {
 
 	@FXML
 	private Label status;
+
+	@FXML
+	private Button translateButton;
 
 	private final ObservableList<TranslationTableDTO> translations = FXCollections.observableArrayList();
 
@@ -92,6 +96,7 @@ public class DictionaryWindowController {
 			WORD_FACADE.removeAllWords();
 			LANGUAGE_FACADE.removeAllLanguages();
 			isCheckedReset.setSelected( false );
+			refreshLanguageCombo();
 			setStatus( Constant.DICTIONARY_RESET_DB_SUCCESS_MSG );
 		} else {
 			setStatus( Constant.DICTIONARY_AGREE_RESET_DB_MSG );
@@ -138,6 +143,11 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslate() {
+		if ( translateButton.isDisable() ) {
+			setStatus( Constant.DICTIONARY_NO_LANGUAGES_WARNING_MSG );
+			return;
+		}
+
 		final Language language = searchWordLangCombo.getSelectionModel().getSelectedItem();
 		final Word word = WORD_FACADE.getWordByNameAndLanguage( searchWordField.getText(), language );
 		final List<WordMap> maps = WORD_MAP_FACADE.getWordMapBySearchWord( word );
@@ -174,8 +184,10 @@ public class DictionaryWindowController {
 	 * Refresh Languages in combobox on Dictionary Window.
 	 */
 	private void refreshLanguageCombo() {
+		final List<Language> languages = LANGUAGE_FACADE.getAllLanguage();
 		searchWordLangCombo.getItems().clear();
-		searchWordLangCombo.getItems().addAll( LANGUAGE_FACADE.getAllLanguage() );
+		searchWordLangCombo.getItems().addAll( languages );
+		translateButton.setDisable( languages.size() < 2 );
 	}
 
 	/**
