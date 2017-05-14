@@ -244,6 +244,7 @@ public class TranslationWindowController {
 		for ( final ComboBox<Language> combo : comboxes ) {
 			combo.getItems().clear();
 			combo.getItems().setAll( languages );
+			combo.getSelectionModel().select( 0 );
 		}
 
 		/*
