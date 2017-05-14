@@ -19,6 +19,11 @@
    <children>
       <MenuBar layoutX="14.0" layoutY="2.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
+            <Menu mnemonicParsing="false" text="Translation">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#processTranslationWindow" text="Open window" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Language">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#processLanguageWindow" text="Open window" />
