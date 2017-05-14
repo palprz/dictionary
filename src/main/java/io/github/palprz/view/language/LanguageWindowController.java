@@ -99,9 +99,11 @@ public class LanguageWindowController {
 		final List<Language> languages = LANGUAGE_FACADE.getAllLanguage();
 		editOldNameCombo.getItems().clear();
 		editOldNameCombo.getItems().addAll( languages );
+		editOldNameCombo.getSelectionModel().select( 0 );
 
 		removeNameCombo.getItems().clear();
 		removeNameCombo.getItems().addAll( languages );
+		removeNameCombo.getSelectionModel().select( 0 );
 
 		// it should be impossible to edit/remove language if database hasn't got languages at all
 		final boolean isDisable = languages.isEmpty();

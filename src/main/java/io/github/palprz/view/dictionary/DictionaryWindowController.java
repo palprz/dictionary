@@ -195,6 +195,7 @@ public class DictionaryWindowController {
 		final List<Language> languages = LANGUAGE_FACADE.getAllLanguage();
 		searchWordLangCombo.getItems().clear();
 		searchWordLangCombo.getItems().addAll( languages );
+		searchWordLangCombo.getSelectionModel().select( 0 );
 		translateButton.setDisable( languages.size() < 2 );
 	}
 
