@@ -95,7 +95,7 @@ public class TranslationWindowController {
 	}
 
 	/**
-	 * Action to add new translation from separate tab.
+	 * Action to add new translation.
 	 */
 	@FXML
 	private void processAdd() {
@@ -147,6 +147,9 @@ public class TranslationWindowController {
 		setStatus( String.format( Constant.TRANSLATION_ADD_SUCCESS_MSG, sb.toString() ) );
 	}
 
+	/**
+	 * Action to edit existing translation.
+	 */
 	@FXML
 	private void processEdit() {
 		final String oldSearchWordName = editOldSearchWordField.getText();
@@ -207,6 +210,9 @@ public class TranslationWindowController {
 		setStatus( String.format( Constant.TRANSLATION_EDIT_SUCCESS_MSG, oldSb.toString(), newSb.toString() ) );
 	}
 
+	/**
+	 * Action to remove existing translation.
+	 */
 	@FXML
 	private void processRemove() {
 		final Language searchWordLang = removeSearchWordLangCombo.getSelectionModel().getSelectedItem();

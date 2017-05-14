@@ -46,6 +46,7 @@
                   <Button fx:id="translateButton" layoutX="13.0" layoutY="105.0" mnemonicParsing="false" onAction="#processTranslate" prefHeight="25.0" prefWidth="136.0" text="Translate" />
                   <ComboBox fx:id="searchWordLangCombo" layoutX="13.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" />
                   <Button layoutX="207.0" layoutY="63.0" mnemonicParsing="false" onAction="#processSwapWords" text="Swap words" />
+                  <Button layoutX="13.0" layoutY="309.0" mnemonicParsing="false" onAction="#processRefresh" text="Refresh" />
                </children>
             </AnchorPane>
             <TableView fx:id="translationTable" prefWidth="200.0">

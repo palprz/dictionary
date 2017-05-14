@@ -46,6 +46,9 @@ public class LanguageWindowController {
 		refreshLanguageCombo();
 	}
 
+	/**
+	 * Action to add new language.
+	 */
 	@FXML
 	private void processAdd() {
 		final String name = addNameField.getText();
@@ -65,6 +68,9 @@ public class LanguageWindowController {
 		setStatus( String.format( Constant.LANGUAGE_ADD_SUCCESS_MSG, addNameField.getText() ) );
 	}
 
+	/**
+	 * Action to edit existing language.
+	 */
 	@FXML
 	private void processEdit() {
 		final Language oldLang = editOldNameCombo.getSelectionModel().getSelectedItem();
@@ -79,6 +85,9 @@ public class LanguageWindowController {
 		setStatus( String.format( Constant.LANGUAGE_EDIT_SUCCESS_MSG, oldLang.getName(), newName ) );
 	}
 
+	/**
+	 * Action to remove existing language.
+	 */
 	@FXML
 	private void processRemove() {
 		final Language langToRemove = removeNameCombo.getSelectionModel().getSelectedItem();
