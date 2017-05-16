@@ -7,22 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="504.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.language.LanguageWindowController">
+<AnchorPane prefHeight="373.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.palprz.view.language.LanguageWindowController">
    <children>
-      <Pane prefHeight="504.0" prefWidth="588.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="361.0" prefWidth="588.0" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="35.0" layoutY="40.0" text="Add language" />
-            <Label layoutX="35.0" layoutY="161.0" text="Edit language" />
-            <Label layoutX="35.0" layoutY="291.0" text="Remove language" />
-            <TextField fx:id="addNameField" layoutX="35.0" layoutY="96.0" />
-            <TextField fx:id="editNewNameField" layoutX="219.0" layoutY="214.0" promptText="new name" />
-            <Button fx:id="addButton" layoutX="451.0" layoutY="96.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
-            <Button fx:id="editButton" layoutX="451.0" layoutY="214.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
-            <Button fx:id="removeButton" layoutX="451.0" layoutY="356.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
-            <ComboBox fx:id="removeNameCombo" layoutX="26.0" layoutY="356.0" prefWidth="150.0" />
-            <ComboBox fx:id="editOldNameCombo" layoutX="34.0" layoutY="214.0" prefWidth="150.0" />
+            <Label layoutX="25.0" layoutY="40.0" text="Add language" />
+            <Label layoutX="25.0" layoutY="161.0" text="Edit language" />
+            <Label layoutX="25.0" layoutY="272.0" text="Remove language" />
+            <TextField fx:id="addNameField" layoutX="23.0" layoutY="57.0" />
+            <TextField fx:id="editNewNameField" layoutX="251.0" layoutY="178.0" promptText="new name" />
+            <Button fx:id="addButton" layoutX="450.0" layoutY="57.0" mnemonicParsing="false" onAction="#processAdd" text="Add" />
+            <Button fx:id="editButton" layoutX="450.0" layoutY="178.0" mnemonicParsing="false" onAction="#processEdit" text="Edit" />
+            <Button fx:id="removeButton" layoutX="450.0" layoutY="289.0" mnemonicParsing="false" onAction="#processRemove" text="Remove" />
+            <ComboBox fx:id="removeNameCombo" layoutX="25.0" layoutY="289.0" prefWidth="150.0" />
+            <ComboBox fx:id="editOldNameCombo" layoutX="22.0" layoutY="178.0" prefWidth="150.0" />
+            <Label fx:id="status" layoutX="24.0" layoutY="348.0" />
          </children>
       </Pane>
-      <Label fx:id="status" layoutX="14.0" layoutY="482.0" />
    </children>
 </AnchorPane>
