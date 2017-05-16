@@ -6,6 +6,7 @@ import java.util.List;
 import io.github.palprz.entity.Language;
 import io.github.palprz.entity.Word;
 import io.github.palprz.entity.WordMap;
+import io.github.palprz.entity.enums.Action;
 import io.github.palprz.facade.LanguageFacade;
 import io.github.palprz.facade.WordFacade;
 import io.github.palprz.facade.WordMapFacade;
@@ -32,13 +33,13 @@ import javafx.scene.control.TextField;
 public class DictionaryWindowController {
 
 	@FXML
-	private ComboBox<Language> searchWordLangCombo;
+	public ComboBox<Language> searchWordLangCombo;
 
 	@FXML
-	private TextField searchWordField;
+	public TextField searchWordField;
 
 	@FXML
-	private TableView<TranslationTableDTO> translationTable;
+	public TableView<TranslationTableDTO> translationTable;
 
 	@FXML
 	private TableColumn<TranslationTableDTO, String> foundWordColumn;
@@ -82,7 +83,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processTranslationWindow() throws IOException {
-		STAGE_BUILDER.createTranslation();
+		STAGE_BUILDER.createTranslation( this, Action.OPEN );
 	}
 
 	/**
@@ -126,7 +127,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processAddContextMenu() throws IOException {
-		STAGE_BUILDER.createTranslation();
+		STAGE_BUILDER.createTranslation( this, Action.ADD );
 	}
 
 	/**
@@ -135,7 +136,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processEditContextMenu() throws IOException {
-		STAGE_BUILDER.createTranslation();
+		STAGE_BUILDER.createTranslation( this, Action.EDIT );
 	}
 
 	/**
@@ -144,7 +145,7 @@ public class DictionaryWindowController {
 	 */
 	@FXML
 	private void processRemoveContextMenu() throws IOException {
-		STAGE_BUILDER.createTranslation();
+		STAGE_BUILDER.createTranslation( this, Action.REMOVE );
 	}
 
 	/**

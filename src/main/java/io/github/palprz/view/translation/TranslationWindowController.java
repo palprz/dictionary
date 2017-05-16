@@ -24,10 +24,10 @@ import javafx.scene.control.TextField;
 public class TranslationWindowController {
 
 	@FXML
-	private TextField addSearchWordField;
+	public TextField addSearchWordField;
 
 	@FXML
-	private ComboBox<Language> addSearchWordLangCombo;
+	public ComboBox<Language> addSearchWordLangCombo;
 
 	@FXML
 	private TextField addTranslationField;
@@ -37,16 +37,16 @@ public class TranslationWindowController {
 
 
 	@FXML
-	private TextField editOldSearchWordField;
+	public TextField editOldSearchWordField;
 
 	@FXML
-	private ComboBox<Language> editOldSearchWordLangCombo;
+	public ComboBox<Language> editOldSearchWordLangCombo;
 
 	@FXML
-	private TextField editOldTranslationField;
+	public TextField editOldTranslationField;
 
 	@FXML
-	private ComboBox<Language> editOldTranslationLangCombo;
+	public ComboBox<Language> editOldTranslationLangCombo;
 
 	@FXML
 	private TextField editNewSearchWordField;
@@ -72,6 +72,7 @@ public class TranslationWindowController {
 
 	@FXML
 	private ComboBox<Language> removeTranslationLangCombo;
+
 
 	@FXML
 	private Label status;
