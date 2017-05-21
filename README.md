@@ -67,11 +67,12 @@ If action will be edit, application will take current serch word with related la
 ![validation][validation]
 
 
-[dictionary]: https://github.com/palprz/dictionary/github-screenshots/dictionary.png
-[translation_window]: https://github.com/palprz/dictionary/github-screenshots/translation_window.png
-[language_window]: https://github.com/palprz/dictionary/github-screenshots/language_window.png
-[found_translation]: https://github.com/palprz/dictionary/github-screenshots/found_translation.png
-[swap]: https://github.com/palprz/dictionary/github-screenshots/swap.png
-[reset_database]: https://github.com/palprz/dictionary/github-screenshots/reset_database.png
-[context_menu_edit]: https://github.com/palprz/dictionary/github-screenshots/context_menu_edit.png
-[context_menu_add]: https://github.com/palprz/dictionary/github-screenshots/context_menu_add.png
+[dictionary]: https://github.com/palprz/dictionary/blob/master/github-screenshots/dictionary.png
+[translation_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/translation_window.png
+[language_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/language_window.png
+[found_translation]: https://github.com/palprz/dictionary/blob/master/github-screenshots/found_translation.png
+[swap]: https://github.com/palprz/dictionary/blob/master/github-screenshots/swap.png
+[reset_database]: https://github.com/palprz/dictionary/blob/master/github-screenshots/reset_database.png
+[context_menu_edit]: https://github.com/palprz/dictionary/blob/master/github-screenshots/context_menu_edit.png
+[context_menu_add]: https://github.com/palprz/dictionary/blob/master/github-screenshots/context_menu_add.png
+[validation]: https://github.com/palprz/dictionary/blob/master/github-screenshots/validation.png
