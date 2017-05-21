@@ -37,39 +37,46 @@ https://www.codacy.com/app/palprz/dictionary/dashboard
 
 ##### Translations
 **Description:** User can add, edit, delete and display translations.
+
 ![translation_window][translation_window]
 
 ##### Languages
-**Description:** User can add, edit, remove and display languages. Each translation has got map between languages (i.e. eng-pl)
+**Description:** User can add, edit, remove and display languages. Each translation has got map between languages (i.e. eng-pl).
+
 ![language_window][language_window]
 
 ##### Search translation by word and language
 **Description:** User can find translation for specific search word and language. User can find more than 1 translation.
+
 ![found_translation][found_translation]
 
 ##### Swap search word with selected translation
 **Description:** User can swap translation (word and language) with current search word (word and language).
+
 ![swap][swap]
 
 ##### Button with reset database
 **Description:** User can remove all translations and languages from database from top bar.
+
 ![reset_database][reset_database]
 
 ##### Action from context menu
 **Description:** User can add, edit and remove translation from Dictionary (main) window by clicking RMB on table with translations and choose the action. 
 If action will be add, application will take current search word and language connected with it, open Translation Window and populate these 2 fields with values.
 If action will be edit, application will take current serch word with related language and selected item in table, open Translation Window and populate these 4 fields with values.
+
 ![context_menu_edit][context_menu_edit]
 ![context_menu_add][context_menu_add]
 
 ##### Validation
 **Dictionary:** All actions are connected with validators. If the validation will fail, user will see message about it at the bottom of the window.
+
 ![validation][validation]
 
 
 [dictionary]: https://github.com/palprz/dictionary/blob/master/github-screenshots/dictionary.png
-[translation_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/translation_window.png
-[language_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/language_window.png
+[translation_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/translation.png
+[language_window]: https://github.com/palprz/dictionary/blob/master/github-screenshots/language.png
 [found_translation]: https://github.com/palprz/dictionary/blob/master/github-screenshots/found_translation.png
 [swap]: https://github.com/palprz/dictionary/blob/master/github-screenshots/swap.png
 [reset_database]: https://github.com/palprz/dictionary/blob/master/github-screenshots/reset_database.png
