@@ -12,8 +12,10 @@ public class TranslationTableDTO {
 	private StringProperty name;
 	private Language language;
 
-	public TranslationTableDTO( final String translationWord ) {
-		this.name = new SimpleStringProperty( translationWord );
+	public TranslationTableDTO( final String translationWord, final Language languageVal ) {
+		setName( translationWord );
+		setLanguage( languageVal );
+
 	}
 
 	public StringProperty getName() {

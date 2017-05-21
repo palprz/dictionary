@@ -189,13 +189,17 @@ public class DictionaryWindowController {
 	private void populateTransactionsByWordMaps( final Word word, final List<WordMap> maps ) {
 		translations.clear();
 		if ( maps.isEmpty() ) {
-			translations.add( new TranslationTableDTO( "No result for search word" ) );
+			translations.add( new TranslationTableDTO( "No result for search word" , null ) );
 		} else {
 			for ( final WordMap map : maps ) {
 				if ( map.getSearchWord().equals( word ) ) {
-					translations.add( new TranslationTableDTO( map.getTranslation().getName() ) );
+					translations.add( new TranslationTableDTO(
+							map.getTranslation().getName(),
+							map.getTranslation().getLanguage() ) );
 				} else {
-					translations.add( new TranslationTableDTO( map.getSearchWord().getName() ) );
+					translations.add( new TranslationTableDTO(
+							map.getSearchWord().getName(),
+							map.getSearchWord().getLanguage() ) );
 				}
 			}
 		}
@@ -222,11 +226,13 @@ public class DictionaryWindowController {
 		final TranslationTableDTO selectedItem = translationTable.getSelectionModel().getSelectedItem();
 		final String name = getSwapName( selectedItem );
 		searchWordField.setText( name );
+		final Language language = getSwapLanguage( selectedItem );
+		searchWordLangCombo.getSelectionModel().select( language );
 		processTranslate();
 	}
 
 	/**
-	 * Get name for swap name in search word text field. The name will be:
+	 * Get name for swap in search word text field. Cases:
 	 * - from selected item in the table
 	 * - from first item in the table if selected item is not specify
 	 * - empty String if table is empty
@@ -247,6 +253,30 @@ public class DictionaryWindowController {
 		}
 
 		return selectedName;
+	}
+
+	/**
+	 * Get language for swap in combo box with search language. Cases:
+	 * - from selected item in the table
+	 * - from first item in the table if selected item is not specify
+	 * - the same language what is current if table is empty
+	 *
+	 * @param selectedItem The selected item in the table.
+	 * @return Language the language to set in combobox
+	 */
+	private Language getSwapLanguage( final TranslationTableDTO selectedItem ) {
+		Language language;
+		if ( selectedItem == null ) {
+			if ( translationTable.getItems().isEmpty() ) {
+				language = searchWordLangCombo.getSelectionModel().getSelectedItem();
+			} else {
+				language = translationTable.getItems().get( 0 ).getLanguage();
+			}
+		} else {
+			language = selectedItem.getLanguage();
+		}
+
+		return language;
 	}
 
 	/**
