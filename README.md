@@ -1,4 +1,4 @@
-## Dictionary [February - May 2017]
+## Dictionary
 
 ![dictionary][dictionary]
 
